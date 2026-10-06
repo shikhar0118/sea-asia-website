@@ -1548,7 +1548,7 @@ html,body {
     font-size: 9px;
   }
 }
-/* Shared image framing for all four slideshow scenes */
+/* Shared image framing for the homepage slideshow scenes */
 .hero-photo {
   object-position: center 54%;
   animation: none;
@@ -1614,16 +1614,21 @@ html,body {
   align-items: center;
   gap: 14px;
   padding: 0 15px;
-  border: 1px solid rgba(255,255,255,.24);
-  border-radius: 12px;
-  background: linear-gradient(135deg,#0a91c7,#0875aa);
-  box-shadow: 0 8px 20px rgba(8,127,181,.2);
+  border: 1px solid rgba(255,255,255,.48);
+  border-radius: 14px;
+  background: linear-gradient(135deg,#10a4d5 0%,#0787bd 48%,#0871a5 100%);
+  box-shadow: 0 7px 18px rgba(5,105,151,.2), inset 0 1px 0 rgba(255,255,255,.2);
   font-size: 11px;
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: .005em;
+  letter-spacing: .01em;
+  transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .site-header .header-cta:hover {
   transform: none;
+  border-color: rgba(255,255,255,.72);
+  background: linear-gradient(135deg,#18addc 0%,#078fc5 48%,#0877ad 100%);
+  box-shadow: 0 10px 24px rgba(5,105,151,.28), inset 0 1px 0 rgba(255,255,255,.25);
 }
 .header-cta span {
   transition: transform .2s ease;
@@ -1769,8 +1774,39 @@ html,body {
   .site-header .brand-name {
     letter-spacing: .55em;
   }
+  /* Keep each slideshow subject in view when the hero is narrow. */
   .hero-photo {
+    inset: 0;
+    height: 100%;
+    object-position: center center;
+  }
+  .hero-photo.is-active {
+    animation: none;
+  }
+  .hero-photo:nth-child(1) {
+    object-position: 56% center;
+  }
+  .hero-photo:nth-child(2) {
+    object-position: 62% center;
+  }
+  .hero-photo:nth-child(3) {
+    object-position: 72% center;
+  }
+  .hero-photo:nth-child(4) {
+    object-position: 58% center;
+  }
+  .hero-photo:nth-child(5) {
     object-position: 68% center;
+  }
+  .hero-photo:nth-child(6) {
+    object-position: 58% center;
+  }
+  .hero.is-customs-scene .hero-eyebrow-label,
+  .hero.is-warehouse-scene .hero-eyebrow-label {
+    max-width: min(54vw,230px);
+    font-size: 8px;
+    letter-spacing: .08em;
+    line-height: 1.5;
   }
   .hero.is-air-scene .hero-note,.hero.is-ocean-scene .hero-note {
     bottom: 88px;

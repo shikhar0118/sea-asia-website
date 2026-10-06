@@ -43,6 +43,11 @@
   if (hero) {
     const slides = [
       {
+        eyebrow: 'CUSTOMS BROKERAGE & FREIGHT FORWARDING',
+        title: 'Customs & freight<br><em>across borders.</em>',
+        copy: 'Customs clearance and international freight coordinated across borders.'
+      },
+      {
         eyebrow: 'ROAD TRANSPORTATION',
         title: 'Road transport<br><em>across India.</em>',
         copy: 'Road transport coordination for cargo moving across India’s highways.'
@@ -61,6 +66,11 @@
         eyebrow: 'OCEAN FREIGHT',
         title: 'Ocean freight<br><em>across wider horizons.</em>',
         copy: 'Ocean freight support for businesses moving cargo across global trade lanes.'
+      },
+      {
+        eyebrow: 'BONDED WAREHOUSING & SUPPLY CHAIN',
+        title: 'Bonded warehousing<br><em>and supply chains.</em>',
+        copy: 'On-site warehouse complexes and distribution networks. Expert palletizing, wooden crafting, and protective packing. Purchase order monitoring, inventory management, and unit tracing.'
       }
     ];
     const photos = [...hero.querySelectorAll('.hero-photo')];
@@ -79,8 +89,10 @@
       photos.forEach((photo, photoIndex) => {
         photo.classList.toggle('is-active', photoIndex === activeSlide);
       });
-      hero.classList.toggle('is-air-scene', activeSlide === 1);
-      hero.classList.toggle('is-ocean-scene', activeSlide === 3);
+      hero.classList.toggle('is-air-scene', activeSlide === 2);
+      hero.classList.toggle('is-ocean-scene', activeSlide === 4);
+      hero.classList.toggle('is-customs-scene', activeSlide === 0);
+      hero.classList.toggle('is-warehouse-scene', activeSlide === 5);
 
       if (eyebrow) eyebrow.textContent = slide.eyebrow;
       if (title) title.innerHTML = slide.title;
