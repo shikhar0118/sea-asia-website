@@ -78,10 +78,10 @@ button {
   object-fit: contain;
   flex: 0 0 auto;
 }
-.brand-name {
+.site-header .brand-name {
   font-size: 22px;
   line-height: 1.15;
-  letter-spacing: .09em;
+  letter-spacing: 1em;
   font-weight: 700;
   color: var(--navy);
 }
@@ -89,7 +89,7 @@ button {
   display: block;
   font-size: 10px;
   letter-spacing: .12em;
-  margin-top: 4px;
+  margin-top: 1.5px;
   color: var(--blue);
 }
 .primary-nav {
@@ -1577,8 +1577,9 @@ html,body {
   width: 82px;
   height: 44px;
 }
-.brand-name {
-  letter-spacing: .085em;
+.site-header .brand-name {
+  /* Add tracking so the company name visually aligns with its longer tagline. */
+  letter-spacing: .32em;
 }
 .brand-name span {
   letter-spacing: .13em;
@@ -1631,8 +1632,9 @@ html,body {
   .brand-mark {
     width: 68px;
   }
-  .brand-name {
+  .site-header .brand-name {
     font-size: 11px;
+    letter-spacing: .5em;
   }
   .brand-name span {
     font-size: 7px;
@@ -1647,10 +1649,18 @@ html,body {
   }
 }
 @media(max-width:720px) {
+  .site-header .brand-name {
+    letter-spacing: .55em;
+  }
   .hero-photo {
     object-position: 68% center;
   }
   .hero.is-air-scene .hero-note,.hero.is-ocean-scene .hero-note {
     bottom: 88px;
+  }
+}
+@media(max-width:390px) {
+  .site-header .brand-name {
+    letter-spacing: .75em;
   }
 }
