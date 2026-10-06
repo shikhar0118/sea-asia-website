@@ -2304,3 +2304,15 @@ html,body {
     transform: none;
   }
 }
+
+/* Keep the full airplane visible without changing the source image. */
+.hero.is-air-scene .hero-photo.is-active {
+  animation: none;
+  object-position: 53% 30%;
+}
+
+@media(max-width:720px) {
+  .hero.is-air-scene .hero-photo.is-active {
+    object-position: 76% 50%;
+  }
+}
