@@ -1,0 +1,13 @@
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+
+# Deployment and dependency directories
+.vercel/
+node_modules/
+vendor/
+
+# Common operating-system files
+Thumbs.db
+.DS_Store
