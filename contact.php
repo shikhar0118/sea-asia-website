@@ -63,8 +63,11 @@ function h(string $value): string
           <a href="pages/gallery.html">
             Gallery
           </a>
+          <a class="active" href="contact.html">
+            Contact
+          </a>
         </nav>
-        <a class="button button-small header-cta" href="contact.php">
+        <a class="button button-small header-cta" href="contact.html">
           Request a Quote <span>&#8599;</span>
         </a>
       </div>
@@ -82,7 +85,7 @@ function h(string $value): string
             <span></span> CONTACT SEA ASIA
           </p>
           <h1>
-            Letâ€™s talk about<br><em>your shipment.</em>
+            Let&rsquo;s talk about<br><em>your shipment.</em>
           </h1>
           <p>
             Send us a few details and our team can follow up about your logistics requirements.
@@ -97,28 +100,29 @@ function h(string $value): string
               <span></span> START A CONVERSATION
             </p>
             <h2>
-              Tell us what youâ€™re moving.
+              Tell us what you&rsquo;re moving.
             </h2>
             <p>
-              Sea Asia Shipping Services LLP is based in Bhopal, Madhya Pradesh. Use the form to tell us what solution you need and how we can reach you.
+              SEA ASIA SHIPPING SERVICES LLP began in Madhya Pradesh and supports customs clearance, freight forwarding and supply chain operations across India and worldwide.
             </p>
             <p class="detail-label">
-              Location
+              Head Office
             </p>
             <p>
-              Bhopal, Madhya Pradesh, India
+              Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh PIN &ndash; 462047
             </p>
             <p class="detail-label">
-              Solutions
+              Email Us
             </p>
             <p>
-              Customs Â· Freight Â· Transportation Â· Warehousing Â· Project Logistics
+              <a href="mailto:info@seaasiashipping.com">info@seaasiashipping.com</a><br>
+              <a href="mailto:shikhardhangar0118@gmail.com">shikhardhangar0118@gmail.com</a>
             </p>
             <p class="detail-label">
-              Prefer a direct contact?
+              WhatsApp Us
             </p>
             <p>
-              Add the companyâ€™s verified phone number and business email here before publishing.
+              <a href="https://wa.me/918319852739" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp at 8319852739">8319852739</a>
             </p>
           </aside>
           <div>
@@ -162,7 +166,7 @@ function h(string $value): string
               </div>
               <div class="form-field full">
                 <label for="service">
-                  Solution youâ€™re interested in
+                  Solution you&rsquo;re interested in
                 </label>
                 <select id="service" name="service">
                   <option value="">Choose a solution</option><option>Customs clearance</option><option>Import / Export</option><option>Air freight</option><option>Ocean freight</option><option>Road transportation</option><option>Warehousing</option><option>Project logistics</option><option>Shipment documentation</option><option>Other / not sure</option>
@@ -208,19 +212,21 @@ function h(string $value): string
           <a href="pages/process.html">
             Our Processes
           </a>
-          <a href="contact.php">
+          <a href="contact.html">
             Contact
           </a>
         </div>
         <div class="footer-contact">
           <span>Get in touch</span>
-          <a href="contact.php">
+          <a href="contact.html">
             Send an enquiry &#8599;
           </a>
+          <a href="mailto:shikhardhangar0118@gmail.com">shikhardhangar0118@gmail.com</a>
+          <a href="https://wa.me/918319852739" target="_blank" rel="noopener noreferrer">WhatsApp: 8319852739</a>
         </div>
       </div>
       <div class="container footer-bottom">
-        <span>Â© <span data-year>2026</span> Sea Asia Shipping Services LLP</span><span>Bhopal, Madhya Pradesh, India</span>
+        <span>&copy; <span data-year>2026</span> SEA ASIA SHIPPING SERVICES LLP</span><span>Bhopal, Madhya Pradesh, India</span>
       </div>
     </footer>
   </body>
