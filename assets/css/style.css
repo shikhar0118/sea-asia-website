@@ -1619,6 +1619,71 @@ html,body {
 .header-cta:hover span {
   transform: translate(2px,-2px);
 }
+.service-symbol {
+  position: relative;
+  font-size: 0;
+}
+.service-symbol:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  right: 10px;
+  top: 10px;
+  border-top: 1.6px solid currentColor;
+  border-right: 1.6px solid currentColor;
+  transform: rotate(0deg);
+}
+.card-arrow:after {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-top: 1.7px solid currentColor;
+  border-right: 1.7px solid currentColor;
+}
+.service-card:hover .card-arrow:after {
+  transform: translate(1px,-1px);
+}
+/* Draw UI arrows with CSS so they render consistently across fonts and browsers. */
+.site-header .header-cta span,
+.hero-actions .button span,
+.feature-band .button span,
+.callout .button span {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-top: 1.7px solid currentColor;
+  border-right: 1.7px solid currentColor;
+  font-size: 0;
+  line-height: 0;
+  transform: rotate(45deg);
+}
+.hero-actions .text-link span {
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  margin: 0 0 4px 5px;
+  background: currentColor;
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+}
+.hero-actions .text-link span:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.card-arrow,
+.service-symbol {
+  font-size: 0;
+}
 .primary-nav a:focus-visible,
 .header-cta:focus-visible,
 .nav-toggle:focus-visible {
