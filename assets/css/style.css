@@ -1574,8 +1574,8 @@ html,body {
   gap: 12px;
 }
 .brand-mark {
-  width: 82px;
-  height: 44px;
+  width: 92px;
+  height: 50px;
 }
 .site-header .brand-name {
   /* Add tracking so the company name visually aligns with its longer tagline. */
@@ -1605,13 +1605,25 @@ html,body {
 }
 .header-cta {
   flex: 0 0 auto;
-  padding: 13px 17px;
+  min-width: 168px;
+  width: 168px;
+  height: 48px;
+  min-height: 48px;
+  align-self: center;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 0 15px;
   border: 1px solid rgba(255,255,255,.24);
   border-radius: 12px;
   background: linear-gradient(135deg,#0a91c7,#0875aa);
   box-shadow: 0 8px 20px rgba(8,127,181,.2);
   font-size: 11px;
+  line-height: 1;
   letter-spacing: .005em;
+}
+.site-header .header-cta:hover {
+  transform: none;
 }
 .header-cta span {
   transition: transform .2s ease;
@@ -1658,6 +1670,46 @@ html,body {
   font-size: 0;
   line-height: 0;
   transform: rotate(45deg);
+}
+.site-header .header-cta span {
+  position: relative;
+  display: block;
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  border: 0;
+  vertical-align: middle;
+  transform: none;
+}
+.site-header .header-cta span:before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transition: transform .2s ease;
+}
+.site-header .header-cta span:after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 1px;
+  width: 9px;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  transform-origin: right center;
+  transition: transform .2s ease;
+}
+.site-header .header-cta:hover span:before {
+  transform: translate(1px,-1px);
+}
+.site-header .header-cta:hover span:after {
+  transform: translate(1px,-1px) rotate(-45deg);
 }
 .hero-actions .text-link span {
   display: inline-block;
@@ -1745,8 +1797,8 @@ html,body {
     min-width: 0;
   }
   .brand-mark {
-    width: 66px;
-    height: 38px;
+    width: 72px;
+    height: 42px;
   }
   .site-header .brand-name {
     font-size: 12px;
@@ -1777,6 +1829,16 @@ html,body {
     height: 2px;
     border-radius: 2px;
     background: var(--navy);
+    transition: transform .22s ease,opacity .18s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
   }
   .header-cta {
     margin-left: auto;
@@ -1790,6 +1852,8 @@ html,body {
     left: 24px;
     right: 24px;
     z-index: 30;
+    max-height: calc(100svh - 92px);
+    overflow-y: auto;
     align-items: stretch;
     flex-direction: column;
     gap: 3px;
@@ -1804,6 +1868,9 @@ html,body {
     display: flex;
   }
   .primary-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     padding: 11px 12px;
     border: 0;
     border-radius: 9px;
@@ -1834,12 +1901,22 @@ html,body {
     height: 72px;
     gap: 7px;
   }
+  .header-cta {
+    width: auto;
+    height: 46px;
+    min-width: 0;
+    min-height: 46px;
+    flex: 0 0 auto;
+    padding: 10px 11px;
+    gap: 7px;
+    font-size: 10px;
+  }
   .brand {
     gap: 6px;
   }
   .brand-mark {
-    width: 52px;
-    height: 34px;
+    width: 60px;
+    height: 38px;
   }
   .site-header .brand-name {
     font-size: 10px;
@@ -1866,6 +1943,7 @@ html,body {
     top: 72px;
     left: 18px;
     right: 18px;
+    max-height: calc(100svh - 86px);
   }
   .hero {
     min-height: 630px;
@@ -1891,6 +1969,16 @@ html,body {
     flex-direction: column;
     gap: 15px;
   }
+  .hero-actions .button,
+  .callout .button,
+  .feature-band .button,
+  .contact-form .button {
+    max-width: 100%;
+  }
+  .hero-actions .text-link {
+    min-height: 44px;
+    gap: 9px;
+  }
   .hero-note {
     right: 18px;
     bottom: 22px;
@@ -1908,6 +1996,15 @@ html,body {
   }
   .proof-item {
     min-width: 0;
+    padding-left: 12px;
+  }
+  .proof-item:nth-of-type(4) {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .proof-item:nth-of-type(3),
+  .proof-item:nth-of-type(5) {
+    border-left: 1px solid var(--line);
     padding-left: 12px;
   }
   .proof-item strong {
@@ -2036,6 +2133,11 @@ html,body {
     grid-template-columns: minmax(0,1fr);
     gap: 20px;
   }
+  .contact-details a,
+  .prose a,
+  .footer-contact a {
+    overflow-wrap: anywhere;
+  }
   .contact-details {
     padding: 24px 21px;
   }
@@ -2058,6 +2160,12 @@ html,body {
   .button {
     min-height: 46px;
   }
+  .footer-links a,
+  .footer-contact a {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+  }
 }
 
 @media(max-width:420px) {
@@ -2065,7 +2173,8 @@ html,body {
     gap: 5px;
   }
   .brand-mark {
-    width: 44px;
+    width: 50px;
+    height: 36px;
   }
   .site-header .brand-name {
     font-size: 9px;
@@ -2076,13 +2185,31 @@ html,body {
     letter-spacing: .045em;
   }
   .header-cta {
-    padding: 9px 8px;
-    gap: 6px;
+    flex: 0 0 76px;
+    width: 76px;
+    min-width: 76px;
+    height: 44px;
+    min-height: 44px;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 7px;
+    font-size: 0;
+  }
+  .header-cta:before {
+    content: "Quote";
     font-size: 9px;
+    line-height: 1;
+    letter-spacing: .01em;
+  }
+  .site-header .header-cta span {
+    flex: 0 0 12px;
   }
   .nav-toggle {
     width: 36px;
     height: 36px;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px;
   }
   .service-card {
     min-height: 214px;
@@ -2097,10 +2224,47 @@ html,body {
   }
 }
 
+@media(max-width:390px) {
+  .service-grid {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .service-card {
+    min-height: 190px;
+    padding: 19px;
+  }
+}
+
+@media(max-width:360px) {
+  .brand-name span {
+    display: none;
+  }
+  .site-header .brand-name {
+    font-size: 9px;
+    letter-spacing: .08em;
+  }
+  .brand {
+    gap: 5px;
+  }
+  .brand-mark {
+    width: 48px;
+    height: 34px;
+  }
+}
+
 @media(prefers-reduced-motion:reduce) {
   .service-card:hover,
   .info-card:hover,
   .steps-grid article:hover {
+    transform: none;
+  }
+}
+
+@media(hover:none) and (pointer:coarse) {
+  .button:hover,
+  .service-card:hover,
+  .info-card:hover,
+  .steps-grid article:hover,
+  .brand:hover .brand-mark {
     transform: none;
   }
 }
