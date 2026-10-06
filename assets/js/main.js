@@ -43,34 +43,34 @@
   if (hero) {
     const slides = [
       {
-        eyebrow: 'CUSTOMS BROKERAGE & FREIGHT FORWARDING',
-        title: 'Customs & freight<br><em>across borders.</em>',
-        copy: 'Customs clearance and international freight coordinated across borders.'
+        eyebrow: 'CUSTOM HOUSE AGENT (CHA) & ADVISORY',
+        title: 'Licensed Customs House Brokerage<br><em>& Regulatory Advisory</em>',
+        copy: 'Complete import and export customs clearance across all major Indian ports, ICDs, and nationwide branches, including documentation auditing and statutory EXIM compliance.'
+      },
+      {
+        eyebrow: 'OCEAN FREIGHT FORWARDING',
+        title: 'Global Ocean Freight<br><em>& Vessel Logistics</em>',
+        copy: 'Cost-effective FCL and LCL ocean forwarding with capacity exceeding 15,000 TEUs annually for worldwide port-to-port and door-to-door deliveries.'
+      },
+      {
+        eyebrow: 'AIR CARGO LOGISTICS',
+        title: 'International Air Cargo<br><em>& 24/7 Aviation Expediting</em>',
+        copy: 'Time-critical international air freight forwarding and round-the-clock 24/7 Aviation AOG (Aircraft On Ground) emergency parts clearance and delivery.'
       },
       {
         eyebrow: 'ROAD TRANSPORTATION',
-        title: 'Road transport<br><em>across India.</em>',
-        copy: 'Road transport coordination for cargo moving across India’s highways.'
+        title: 'Pan-India Road Freight<br><em>& Specialized Transit Corridors</em>',
+        copy: 'Nationwide surface transportation using modern commercial fleets with dedicated scheduled runs along high-demand industrial corridors, including the Bhopal–Mumbai route.'
       },
       {
-        eyebrow: 'AIR FREIGHT',
-        title: 'Air freight<br><em>connected worldwide.</em>',
-        copy: 'Air freight coordination for shipments moving across international routes.'
-      },
-      {
-        eyebrow: 'LOGISTICS COORDINATION',
-        title: 'Every route<br><em>starts with a plan.</em>',
-        copy: 'Shipment coordination shaped around cargo, route and documentation needs.'
-      },
-      {
-        eyebrow: 'OCEAN FREIGHT',
-        title: 'Ocean freight<br><em>across wider horizons.</em>',
-        copy: 'Ocean freight support for businesses moving cargo across global trade lanes.'
+        eyebrow: 'RAIL CARGO LOGISTICS',
+        title: 'High-Capacity Rail Cargo<br><em>& Multimodal Rake Operations</em>',
+        copy: 'End-to-end full railway rake coordination and ICD terminal handling with Indian Railways for large-scale domestic bulk freight and cross-border project exports.'
       },
       {
         eyebrow: 'BONDED WAREHOUSING & SUPPLY CHAIN',
-        title: 'Bonded warehousing<br><em>and supply chains.</em>',
-        copy: 'On-site warehouse complexes and distribution networks. Expert palletizing, wooden crafting, and protective packing. Purchase order monitoring, inventory management, and unit tracing.'
+        title: 'Bonded Warehousing & Integrated<br><em>Supply Chain Solutions</em>',
+        copy: 'Secure customs-bonded and general warehousing facilities providing professional palletizing, industrial crafting, and real-time inventory and purchase order tracking.'
       }
     ];
     const photos = [...hero.querySelectorAll('.hero-photo')];
@@ -90,7 +90,7 @@
         photo.classList.toggle('is-active', photoIndex === activeSlide);
       });
       hero.classList.toggle('is-air-scene', activeSlide === 2);
-      hero.classList.toggle('is-ocean-scene', activeSlide === 4);
+      hero.classList.toggle('is-ocean-scene', activeSlide === 1);
       hero.classList.toggle('is-customs-scene', activeSlide === 0);
       hero.classList.toggle('is-warehouse-scene', activeSlide === 5);
 
