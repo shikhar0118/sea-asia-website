@@ -43,34 +43,34 @@
   if (hero) {
     const slides = [
       {
-        eyebrow: 'CUSTOM HOUSE AGENT (CHA) & ADVISORY',
-        title: 'Licensed Customs House Brokerage<br><em>& Regulatory Advisory</em>',
-        copy: 'Complete import and export customs clearance across all major Indian ports, ICDs, and nationwide branches, including documentation auditing and statutory EXIM compliance.'
+        eyebrow: 'CUSTOMS HOUSE AGENT (CHA)',
+        title: 'Licensed Customs Brokerage',
+        copy: 'End-to-end import/export customs clearance and EXIM documentation across all major Indian ports and ICDs.'
       },
       {
         eyebrow: 'OCEAN FREIGHT FORWARDING',
-        title: 'Global Ocean Freight<br><em>& Vessel Logistics</em>',
-        copy: 'Cost-effective FCL and LCL ocean forwarding with capacity exceeding 15,000 TEUs annually for worldwide port-to-port and door-to-door deliveries.'
+        title: 'Global Ocean Freight',
+        copy: 'FCL and LCL container forwarding delivering over 15,000 TEUs annually to global ports and doorsteps.'
       },
       {
         eyebrow: 'AIR CARGO LOGISTICS',
-        title: 'International Air Cargo<br><em>& 24/7 Aviation Expediting</em>',
-        copy: 'Time-critical international air freight forwarding and round-the-clock 24/7 Aviation AOG (Aircraft On Ground) emergency parts clearance and delivery.'
+        title: 'International Air Logistics',
+        copy: 'Expedited worldwide air freight with 24/7 Aviation AOG emergency parts processing.'
       },
       {
         eyebrow: 'ROAD TRANSPORTATION',
-        title: 'Pan-India Road Freight<br><em>& Specialized Transit Corridors</em>',
-        copy: 'Nationwide surface transportation using modern commercial fleets with dedicated scheduled runs along high-demand industrial corridors, including the Bhopal–Mumbai route.'
+        title: 'Pan-India Road Freight',
+        copy: 'Reliable nationwide surface transport with specialized transit routes like Bhopal–Mumbai.'
       },
       {
         eyebrow: 'RAIL CARGO LOGISTICS',
-        title: 'High-Capacity Rail Cargo<br><em>& Multimodal Rake Operations</em>',
-        copy: 'End-to-end full railway rake coordination and ICD terminal handling with Indian Railways for large-scale domestic bulk freight and cross-border project exports.'
+        title: 'Multimodal Rail Logistics',
+        copy: 'Full railway rake coordination with Indian Railways for bulk cargo and cross-border project exports.'
       },
       {
-        eyebrow: 'BONDED WAREHOUSING & SUPPLY CHAIN',
-        title: 'Bonded Warehousing & Integrated<br><em>Supply Chain Solutions</em>',
-        copy: 'Secure customs-bonded and general warehousing facilities providing professional palletizing, industrial crafting, and real-time inventory and purchase order tracking.'
+        eyebrow: 'WAREHOUSING',
+        title: 'Bonded Warehousing',
+        copy: 'Secure bonded storage featuring professional crafting, palletizing, and real-time inventory tracking.'
       }
     ];
     const photos = [...hero.querySelectorAll('.hero-photo')];
