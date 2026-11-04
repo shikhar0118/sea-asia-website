@@ -2278,21 +2278,6 @@ html,body {
 
 @media(max-width:720px) {
   .hero.is-air-scene .hero-photo.is-active {
-    object-position: 72% 32%;
-  }
-  .hero.is-customs-scene .hero-photo.is-active {
-    object-position: 50% 52%;
-  }
-  .hero.is-ocean-scene .hero-photo.is-active {
-    object-position: 72% 52%;
-  }
-  .hero .hero-photo:nth-child(4) {
-    object-position: 73% 52%;
-  }
-  .hero .hero-photo:nth-child(5) {
-    object-position: 72% 52%;
-  }
-  .hero.is-warehouse-scene .hero-photo.is-active {
-    object-position: 50% 54%;
+    object-position: 76% 50%;
   }
 }
