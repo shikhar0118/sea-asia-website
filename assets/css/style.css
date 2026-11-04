@@ -1940,12 +1940,12 @@ html,body {
     height: 38px;
   }
   .site-header .brand-name {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: .12em;
   }
   .site-header .brand-name span {
     margin-top: 3px;
-    font-size: 6px;
+    font-size: 6.5px;
     letter-spacing: .06em;
     white-space: nowrap;
   }
@@ -2199,11 +2199,11 @@ html,body {
     height: 36px;
   }
   .site-header .brand-name {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: .1em;
   }
   .site-header .brand-name span {
-    font-size: 5.5px;
+    font-size: 6.5px;
     letter-spacing: .045em;
   }
   .nav-toggle {
@@ -2237,12 +2237,13 @@ html,body {
 }
 
 @media(max-width:360px) {
-  .brand-name span {
-    display: none;
-  }
   .site-header .brand-name {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: .08em;
+  }
+  .site-header .brand-name span {
+    display: block;
+    font-size: 6px;
   }
   .brand {
     gap: 5px;
