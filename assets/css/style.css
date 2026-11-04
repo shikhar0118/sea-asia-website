@@ -1750,6 +1750,9 @@ html,body {
   }
 }
 @media(max-width:720px) {
+  .site-header .header-cta {
+    display: none;
+  }
   .site-header .brand-name {
     letter-spacing: .55em;
   }
@@ -2198,23 +2201,6 @@ html,body {
   .site-header .brand-name span {
     font-size: 5.5px;
     letter-spacing: .045em;
-  }
-  .header-cta {
-    flex: 0 0 76px;
-    width: 76px;
-    min-width: 76px;
-    height: 44px;
-    min-height: 44px;
-    justify-content: center;
-    gap: 5px;
-    padding: 8px 7px;
-    font-size: 0;
-  }
-  .header-cta:before {
-    content: "Quote";
-    font-size: 9px;
-    line-height: 1;
-    letter-spacing: .01em;
   }
   .nav-toggle {
     width: 36px;
