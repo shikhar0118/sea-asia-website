@@ -104,58 +104,64 @@ if ($service !== '' && !in_array($service, $allowedServices, true)) {
     redirectWithStatus('error', $error);
 }
 
-// Credentials belong in the hosting environment, never in committed source.
-$host = getenv('DB_HOST') ?: '127.0.0.1';
-$port = getenv('DB_PORT') ?: '3306';
-$db = getenv('DB_NAME') ?: '';
-$user = getenv('DB_USER') ?: '';
-$pass = getenv('DB_PASSWORD') ?: '';
+// Email credentials belong in the hosting environment, never in committed source.
+$apiKey = getenv('RESEND_API_KEY') ?: '';
+$recipient = getenv('CONTACT_TO_EMAIL') ?: 'shikhardhangar0118@gmail.com';
+$sender = getenv('CONTACT_FROM_EMAIL') ?: '';
 
-if ($db === '' || $user === '') {
-    error_log('Sea Asia contact form: database environment is not configured.');
-    $error = 'Enquiry saving is not configured yet. Please contact us by phone or email.';
+if ($apiKey === '' || $sender === '') {
+    error_log('Sea Asia contact form: email delivery is not configured.');
+    $error = 'Enquiry sending is not configured yet. Please contact us by email or WhatsApp.';
     if ($isJsonRequest) {
         respondWithJson(503, $error);
     }
     redirectWithStatus('error', $error);
 }
 
-try {
-    $pdo = new PDO(
-        "mysql:host={$host};port={$port};dbname={$db};charset=utf8mb4",
-        $user,
-        $pass,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_EMULATE_PREPARES => false,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]
-    );
+$subject = 'Website enquiry' . ($service !== '' ? ' — ' . $service : '');
+$text = "New enquiry from the Sea Asia website\n\n"
+    . "Name: {$name}\n"
+    . 'Company: ' . ($company !== '' ? $company : 'Not provided') . "\n"
+    . "Email: {$email}\n"
+    . 'Phone: ' . ($phone !== '' ? $phone : 'Not provided') . "\n"
+    . 'Service: ' . ($service !== '' ? $service : 'Not specified') . "\n\n"
+    . "Shipment details:\n{$message}\n";
 
-    $stmt = $pdo->prepare(
-        'INSERT INTO contact_enquiries (name, company, email, phone, service, message) '
-        . 'VALUES (:name, :company, :email, :phone, :service, :message)'
-    );
-    $stmt->execute([
-        'name' => $name,
-        'company' => $company ?: null,
-        'email' => $email,
-        'phone' => $phone ?: null,
-        'service' => $service ?: null,
-        'message' => $message,
-    ]);
+$payload = json_encode([
+    'from' => $sender,
+    'to' => [$recipient],
+    'reply_to' => $email,
+    'subject' => $subject,
+    'text' => $text,
+]);
 
+$context = stream_context_create([
+    'http' => [
+        'method' => 'POST',
+        'header' => "Authorization: Bearer {$apiKey}\r\nContent-Type: application/json\r\nAccept: application/json\r\n",
+        'content' => $payload,
+        'timeout' => 12,
+        'ignore_errors' => true,
+    ],
+]);
+
+$responseBody = @file_get_contents('https://api.resend.com/emails', false, $context);
+$statusLine = $http_response_header[0] ?? '';
+preg_match('/\s(\d{3})\s/', $statusLine, $statusMatch);
+$httpStatus = isset($statusMatch[1]) ? (int) $statusMatch[1] : 0;
+
+if ($responseBody === false || $httpStatus < 200 || $httpStatus >= 300) {
+    error_log('Sea Asia contact form email delivery failed. HTTP status: ' . $httpStatus . '; response: ' . (string) $responseBody);
+    $error = 'We could not send your enquiry right now. Please contact us by email or WhatsApp.';
     if ($isJsonRequest) {
-        respondWithJson(201, 'Thank you. Your enquiry has been saved. Our team will review it.');
-    }
-
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    redirectWithStatus('success', 'Thank you. Your enquiry has been saved. Our team will review it.');
-} catch (Throwable $e) {
-    error_log('Sea Asia contact form database error: ' . $e->getMessage());
-    $error = 'We could not save your enquiry right now. Please contact us by phone or email.';
-    if ($isJsonRequest) {
-        respondWithJson(500, $error);
+        respondWithJson($httpStatus === 0 ? 503 : 500, $error);
     }
     redirectWithStatus('error', $error);
 }
+
+if ($isJsonRequest) {
+    respondWithJson(201, 'Thank you. Your enquiry has been sent to our team.');
+}
+
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+redirectWithStatus('success', 'Thank you. Your enquiry has been sent to our team.');

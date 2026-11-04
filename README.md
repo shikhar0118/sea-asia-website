@@ -4,12 +4,13 @@ Responsive company website and project source.
 
 ## Enquiry backend
 
-The Contact page sends enquiries to `api/contact-submit.php`. The PHP handler validates each request and stores accepted enquiries in the MySQL `contact_enquiries` table.
+The Contact page sends enquiries to `api/contact-submit.php`. The PHP handler validates each request and emails accepted enquiries to the configured recipient using Resend.
 
-### Database setup
+### Email setup
 
-1. Create a MySQL database and run [`database/schema.sql`](database/schema.sql).
-2. Copy `.env.example` to `.env` for a local PHP server and enter the database connection values. Do not commit `.env` or share its password.
-3. In Vercel, add `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD` under the project environment variables for each deployment environment you use. Redeploy after changing those values.
+1. Create a Resend account, add a sending domain (a subdomain such as `notify.example.com` avoids changing existing mail records), and add the DNS records Resend provides at the domain's DNS host.
+2. Create a Resend API key. Keep it private.
+3. In Vercel, add `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` under Project Settings → Environment Variables for each deployment environment you use. `CONTACT_FROM_EMAIL` must use the verified sending domain.
+4. Redeploy after changing the environment variables.
 
-The public Contact page needs the PHP function runtime and the database environment variables to be configured. If the backend is unavailable, the page displays an error and keeps the contact phone and email visible as alternatives.
+The public Contact page needs the PHP function runtime and email environment variables to be configured. If the email service is unavailable, the page displays an error and keeps the contact phone and email visible as alternatives. The recipient can be changed with `CONTACT_TO_EMAIL` without changing the code.
