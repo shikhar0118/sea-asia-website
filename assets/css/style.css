@@ -1753,6 +1753,9 @@ html,body {
   .site-header .header-cta {
     display: none;
   }
+  .site-header .nav-toggle {
+    margin-left: auto;
+  }
   .site-header .brand-name {
     letter-spacing: .55em;
   }
