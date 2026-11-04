@@ -1989,6 +1989,7 @@ html,body {
     align-items: flex-start;
     flex-direction: column;
     gap: 15px;
+    margin-top: clamp(64px,12svh,112px);
   }
   .hero-actions .button,
   .callout .button,
