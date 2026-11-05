@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+sea-asia-config.php
 
 # Deployment and dependency directories
 .vercel/

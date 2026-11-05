@@ -104,10 +104,17 @@ if ($service !== '' && !in_array($service, $allowedServices, true)) {
     redirectWithStatus('error', $error);
 }
 
-// Email credentials belong in the hosting environment, never in committed source.
-$apiKey = getenv('RESEND_API_KEY') ?: '';
-$recipient = getenv('CONTACT_TO_EMAIL') ?: 'shikhardhangar0118@gmail.com';
-$sender = getenv('CONTACT_FROM_EMAIL') ?: '';
+// Keep credentials in the hosting environment or in a private config file
+// outside the public document root (for GoDaddy cPanel deployments).
+$hostingConfigPath = dirname(__DIR__, 2) . '/sea-asia-config.php';
+$hostingConfig = is_file($hostingConfigPath) ? require $hostingConfigPath : [];
+if (!is_array($hostingConfig)) {
+    $hostingConfig = [];
+}
+
+$apiKey = getenv('RESEND_API_KEY') ?: (string) ($hostingConfig['RESEND_API_KEY'] ?? '');
+$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? 'shikhardhangar0118@gmail.com');
+$sender = getenv('CONTACT_FROM_EMAIL') ?: (string) ($hostingConfig['CONTACT_FROM_EMAIL'] ?? '');
 
 if ($apiKey === '' || $sender === '') {
     error_log('Sea Asia contact form: email delivery is not configured.');
