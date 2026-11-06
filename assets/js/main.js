@@ -38,39 +38,29 @@
     el.textContent = new Date().getFullYear();
   });
 
-  // Homepage slideshow. Scene order matches the image order in index.html.
+  // Homepage service slideshow. Scene order matches the image order in index.html.
   const hero = document.querySelector('.hero');
   if (hero) {
     const slides = [
       {
-        eyebrow: 'CUSTOMS HOUSE AGENT (CHA)',
-        title: 'Licensed Customs Brokerage',
-        copy: 'End-to-end import/export customs clearance and EXIM documentation across all major Indian ports and ICDs.'
+        eyebrow: '01 / CUSTOMS CLEARANCE',
+        title: 'Customs House Agency (CHA) Services',
+        copy: 'Professional import and export customs clearance coordination, including Shipping Bills, Bills of Entry, documentation verification, customs assessment, examination, and cargo release formalities.'
       },
       {
-        eyebrow: 'OCEAN FREIGHT FORWARDING',
-        title: 'Global Ocean Freight',
-        copy: 'FCL and LCL container forwarding delivering over 15,000 TEUs annually to global ports and doorsteps.'
+        eyebrow: '02 / EXIM DOCUMENTATION',
+        title: 'Import, Export & Compliance Support',
+        copy: 'Complete documentation assistance covering commercial invoices, packing lists, Bills of Lading, certificates, e-Sanchit submissions, AD Code, ICEGATE-related requirements, and applicable regulatory procedures.'
       },
       {
-        eyebrow: 'AIR CARGO LOGISTICS',
-        title: 'International Air Logistics',
-        copy: 'Expedited worldwide air freight with 24/7 Aviation AOG emergency parts processing.'
+        eyebrow: '03 / SHIPPING & CARRIER',
+        title: 'Shipping Line & Carrier Coordination',
+        copy: 'Efficient coordination with shipping lines and carriers for vessel schedules, booking requests, container availability, shipping instructions, documentation amendments, sailing updates, and shipment tracking.'
       },
       {
-        eyebrow: 'ROAD TRANSPORTATION',
-        title: 'Pan-India Road Freight',
-        copy: 'Reliable nationwide surface transport with specialized transit routes like Bhopal–Mumbai.'
-      },
-      {
-        eyebrow: 'RAIL CARGO LOGISTICS',
-        title: 'Multimodal Rail Logistics',
-        copy: 'Full railway rake coordination with Indian Railways for bulk cargo and cross-border project exports.'
-      },
-      {
-        eyebrow: 'WAREHOUSING',
-        title: 'Bonded Warehousing',
-        copy: 'Secure bonded storage featuring professional crafting, palletizing, and real-time inventory tracking.'
+        eyebrow: '04 / FREIGHT & LOGISTICS',
+        title: 'Transportation & Port Coordination',
+        copy: 'Reliable coordination for container movement, transportation, port entry, terminal handling, cargo examination, delivery schedules, shipment milestones, and operational updates.'
       }
     ];
     const photos = [...hero.querySelectorAll('.hero-photo')];
@@ -89,10 +79,10 @@
       photos.forEach((photo, photoIndex) => {
         photo.classList.toggle('is-active', photoIndex === activeSlide);
       });
-      hero.classList.toggle('is-air-scene', activeSlide === 2);
-      hero.classList.toggle('is-ocean-scene', activeSlide === 1);
+      hero.classList.toggle('is-air-scene', false);
+      hero.classList.toggle('is-ocean-scene', activeSlide === 2);
       hero.classList.toggle('is-customs-scene', activeSlide === 0);
-      hero.classList.toggle('is-warehouse-scene', activeSlide === 5);
+      hero.classList.toggle('is-warehouse-scene', false);
 
       if (eyebrow) eyebrow.textContent = slide.eyebrow;
       if (title) title.innerHTML = slide.title;
@@ -110,12 +100,12 @@
       }
     };
 
-    // Rotate slides every five seconds; stop while the page is hidden.
+    // Give visitors time to read the service details; pause while the page is hidden.
     const stopAutoplay = () => window.clearInterval(autoplayTimer);
     const startAutoplay = () => {
       stopAutoplay();
       if (!reduceMotion && !document.hidden) {
-        autoplayTimer = window.setInterval(() => showSlide(activeSlide + 1), 5000);
+        autoplayTimer = window.setInterval(() => showSlide(activeSlide + 1), 8000);
       }
     };
 
@@ -123,108 +113,95 @@
     startAutoplay();
   }
 
-  // Optional scroll reveals. The site remains readable if GSAP is unavailable
-  // or if the visitor prefers reduced motion.
-  if (!window.gsap || !window.ScrollTrigger || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const header = document.querySelector('.site-header');
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 
+  // GSAP is already loaded by the site pages. Keep motion graceful if a CDN
+  // is unavailable, and leave the normal page fully visible for reduced motion.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const proofStrip = document.querySelector('.proof-strip');
+  if (proofStrip && !reduceMotion && 'IntersectionObserver' in window) {
+    const proofObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      proofStrip.classList.add('is-live');
+      proofObserver.disconnect();
+    }, { threshold: 0.28 });
+    proofObserver.observe(proofStrip);
+  }
+  if (!window.gsap || !window.ScrollTrigger || reduceMotion) return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // Add small entrance effects to shared page sections.
-  const startPageAnimations = () => {
-    const headerIntro = gsap.timeline({ defaults: { ease: 'power2.out' } });
-    headerIntro
-      .from('.brand-mark', { x: -14, autoAlpha: 0, duration: 0.45 })
-      .from('.brand-name', { y: 8, autoAlpha: 0, duration: 0.35 }, '-=0.22')
-      .from('.primary-nav a', { y: -8, autoAlpha: 0, duration: 0.32, stagger: 0.045 }, '-=0.18')
-      .from('.header-cta', { y: -8, autoAlpha: 0, duration: 0.32 }, '-=0.16');
+  const ease = 'power3.out';
+  const headerItems = document.querySelectorAll('.site-header .brand-mark, .site-header .brand-name, .site-header .primary-nav a, .site-header .header-cta');
+  if (headerItems.length) {
+    gsap.from(headerItems, { y: 9, autoAlpha: 0, duration: .38, stagger: .035, ease, clearProps: 'transform,opacity' });
+  }
+  const homeHero = document.querySelector('.hero');
+  if (homeHero) {
+    gsap.timeline({ defaults: { ease } })
+      .from('.hero-content > .eyebrow', { y: 14, autoAlpha: 0, duration: .45, clearProps: 'transform,opacity' })
+      .from('.hero h1', { y: 24, autoAlpha: 0, duration: .62, clearProps: 'transform,opacity' }, '-=.2')
+      .from('.hero-copy', { y: 16, autoAlpha: 0, duration: .5, clearProps: 'transform,opacity' }, '-=.28')
+      .from('.hero-actions > *', { y: 12, autoAlpha: 0, duration: .42, stagger: .1, clearProps: 'transform,opacity' }, '-=.2');
+  }
 
-    const pageHero = document.querySelector('.page-hero');
-    if (pageHero) {
-      gsap.from('.page-hero .container > *', {
-        y: 18,
-        autoAlpha: 0,
-        duration: 0.52,
-        stagger: 0.08,
-        ease: 'power2.out',
-        delay: 0.12
-      });
-    }
+  document.querySelectorAll('.page-hero .container').forEach((container) => {
+    gsap.from(container.children, { y: 18, autoAlpha: 0, duration: .52, stagger: .07, ease, delay: .08, clearProps: 'transform,opacity' });
+  });
 
-    const revealItems = document.querySelectorAll(
-      '.section-heading, .intro-grid > *, .feature-content > *, .contact-layout > *'
-    );
-    revealItems.forEach((element) => {
-      gsap.from(element, {
-        y: 20,
-        autoAlpha: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 88%',
-          once: true
-        }
-      });
+  const revealSelector = [
+    '.section-heading', '.intro-grid > *', '.feature-content > *', '.contact-layout > *',
+    '.proof-intro', '.cta-inner > *', '.footer-main > *', '.footer-bottom > *',
+    '.content-section .gallery-note', '.content-section .callout'
+  ].join(',');
+  document.querySelectorAll(revealSelector).forEach((element, index) => {
+    gsap.from(element, {
+      y: 20, autoAlpha: 0, duration: .58, delay: index % 2 ? .04 : 0, ease,
+      scrollTrigger: { trigger: element, start: 'top 90%', once: true }
     });
+  });
 
-    document.querySelectorAll('.service-grid, .page-grid, .steps-grid, .proof-grid').forEach((grid) => {
-      const cards = grid.querySelectorAll('.service-card, .info-card, article, .proof-item');
-      if (!cards.length) return;
-      gsap.fromTo(cards,
-        { y: 30, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.68,
-          stagger: 0.09,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: grid, start: 'top 84%', once: true }
-        }
-      );
+  document.querySelectorAll('.service-grid, .page-grid, .steps-grid, .recognition-list').forEach((grid) => {
+    const cards = grid.querySelectorAll('.service-card, .info-card, .recognition-item, article');
+    if (!cards.length) return;
+    gsap.fromTo(cards, { y: 24, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: .62, stagger: .09, ease, clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: grid, start: 'top 88%', once: true }
     });
+  });
 
-    gsap.utils.toArray('.hero-photo').forEach((background) => {
-      gsap.to(background, {
-        yPercent: 4,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: background.closest('.hero'),
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.7
-        }
-      });
+  // Count the existing proof values in place, retaining their suffix markup.
+  document.querySelectorAll('.proof-item strong').forEach((value) => {
+    const textNode = [...value.childNodes].find((node) => node.nodeType === Node.TEXT_NODE);
+    if (!textNode) return;
+    const match = textNode.textContent.trim().match(/^(\d[\d,]*)/);
+    if (!match) return;
+    const target = Number(match[1].replace(/,/g, ''));
+    const suffix = textNode.textContent.trim().slice(match[1].length);
+    const counter = { value: 0 };
+    ScrollTrigger.create({
+      trigger: value,
+      start: 'top 92%',
+      once: true,
+      onEnter: () => gsap.to(counter, {
+        value: target, duration: 1.35, ease: 'power2.out',
+        onUpdate: () => { textNode.textContent = `${Math.round(counter.value).toLocaleString('en-IN')}${suffix}`; }
+      })
     });
+  });
 
-    gsap.utils.toArray('.feature-image').forEach((background) => {
-      gsap.fromTo(background,
-        { backgroundPositionY: '42%' },
-        {
-          backgroundPositionY: '68%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: background.closest('.feature-band'),
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.7
-          }
-        }
-      );
+  gsap.utils.toArray('.hero-photo').forEach((photo) => {
+    gsap.to(photo, {
+      yPercent: 3, ease: 'none',
+      scrollTrigger: { trigger: photo.closest('.hero'), start: 'top top', end: 'bottom top', scrub: .8 }
     });
-
-    gsap.utils.toArray('.page-hero').forEach((hero) => {
-      gsap.to(hero, {
-        '--scroll-orbit': '90px',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: hero,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.7
-        }
-      });
+  });
+  gsap.utils.toArray('.feature-image').forEach((image) => {
+    gsap.fromTo(image, { backgroundPositionY: '44%' }, {
+      backgroundPositionY: '62%', ease: 'none',
+      scrollTrigger: { trigger: image.closest('.feature-band'), start: 'top bottom', end: 'bottom top', scrub: .8 }
     });
-  };
-
-  startPageAnimations();
+  });
 })();

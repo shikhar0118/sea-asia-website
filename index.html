@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261006-organized-source">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261106-footer-light">
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-    <script src="assets/js/main.js?v=20261006-organized-source" defer></script>
+    <script src="assets/js/main.js?v=20261106-proof-signal" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">
@@ -55,27 +55,28 @@
       </div>
     </header>
     <main id="main">
-      <!-- Hero images use the same order as the slide copy in assets/js/main.js. -->
+      <!-- Hero service slides follow the same order as assets/js/main.js. -->
       <section class="hero is-customs-scene">
         <div class="hero-media" aria-hidden="true">
-          <img class="hero-photo is-active" src="assets/images/hero-customs.jpg" alt="Cargo containers at a customs and freight terminal" fetchpriority="high">
-          <img class="hero-photo" src="assets/images/hero-ship.jpg" alt="">
-          <img class="hero-photo" src="assets/images/hero-air.jpg" alt="">
-          <img class="hero-photo" src="assets/images/hero-truck.png" alt="">
-          <img class="hero-photo" src="assets/images/hero-rail.jpg" alt="">
-          <img class="hero-photo" src="assets/images/hero-warehouse-godown.jpg" alt="Cardboard boxes and packed goods stored inside an Indian godown">
+          <picture>
+            <source media="(max-width: 720px)" srcset="assets/images/service-customs-clearance-mobile.jpg">
+            <img class="hero-photo is-active" src="assets/images/service-customs-clearance-india-v2.jpg" alt="" fetchpriority="high">
+          </picture>
+          <img class="hero-photo" src="assets/images/service-exim-documentation-india-v2.jpg" alt="">
+          <img class="hero-photo" src="assets/images/service-shipping-carrier-india.jpg" alt="">
+          <img class="hero-photo" src="assets/images/service-port-transport-india.jpg" alt="">
         </div>
         <div class="hero-shade">
         </div>
         <div class="container hero-content">
           <p class="eyebrow eyebrow-light">
-            <span></span><b class="hero-eyebrow-label">CUSTOMS HOUSE AGENT (CHA)</b>
+            <span></span><b class="hero-eyebrow-label">01 / CUSTOMS CLEARANCE</b>
           </p>
           <h1>
-            Licensed Customs Brokerage
+            Customs House Agency (CHA) Services
           </h1>
           <p class="hero-copy">
-            End-to-end import/export customs clearance and EXIM documentation across all major Indian ports and ICDs.
+            Professional import and export customs clearance coordination, including Shipping Bills, Bills of Entry, documentation verification, customs assessment, examination, and cargo release formalities.
           </p>
           <div class="hero-actions">
             <a class="button" href="contact.html">
@@ -149,43 +150,31 @@
           </div>
           <div class="service-grid">
             <a class="service-card" href="pages/solutions.html#customs">
-              <span class="card-number">01 / CUSTOMS</span><span class="service-symbol">&#9881;</span>
-              <h3>
-                Customs Brokerage &amp; Advisory (CHA)
-              </h3>
-              <p>
-                Specialized export and import customs clearance across all branches, ports, and ICDs in India. Documentation auditing for pre- and post-shipment documents, Bond-cum-Legal undertakings, and EXIM certifications. Advisory and compliance support for Customs, GST, SEZ Act 2006, EOU, and STPI units. Licensing procurement assistance, including Advance Authorization, MEIS, DEPB, SIL, and specific schemes.
-              </p>
+              <img class="service-card-image" src="assets/images/service-customs-clearance-india-v2.jpg" alt="Shipping documents, laptop, and port cranes seen through a window" loading="lazy">
+              <span class="card-number">01 / CUSTOMS CLEARANCE</span>
+              <h3>Customs House Agency (CHA) Services</h3>
+              <p>Professional import and export customs clearance coordination, including Shipping Bills, Bills of Entry, documentation verification, customs assessment, examination, and cargo release formalities.</p>
+              <span class="card-arrow" aria-hidden="true">&#8599;</span>
+            </a>
+            <a class="service-card" href="pages/solutions.html#documentation">
+              <img class="service-card-image" src="assets/images/service-exim-documentation-india-v2.jpg" alt="Indian EXIM professional reviewing import and export documents at a port-side office" loading="lazy">
+              <span class="card-number">02 / EXIM DOCUMENTATION</span>
+              <h3>Import, Export &amp; Compliance Support</h3>
+              <p>Complete documentation assistance covering commercial invoices, packing lists, Bills of Lading, certificates, e-Sanchit submissions, AD Code, ICEGATE-related requirements, and applicable regulatory procedures.</p>
               <span class="card-arrow" aria-hidden="true">&#8599;</span>
             </a>
             <a class="service-card" href="pages/solutions.html#freight">
-              <span class="card-number">02 / FREIGHT</span><span class="service-symbol">&#8599;</span>
-              <h3>
-                International Freight Forwarding (Sea &amp; Air)
-              </h3>
-              <p>
-                Cost-effective ocean freight (FCL/LCL) and worldwide air cargo forwarding. 24/7 Aviation AOG (Aircraft On Ground) emergency expediting. Heavy-lift project forwarding, charters, and worldwide door-to-door deliveries. Express domestic air solutions include Same Day Delivery and Next Flight Out routing.
-              </p>
+              <img class="service-card-image" src="assets/images/service-shipping-carrier-india.jpg" alt="Container ship and cranes at an Indian port" loading="lazy">
+              <span class="card-number">03 / SHIPPING &amp; CARRIER</span>
+              <h3>Shipping Line &amp; Carrier Coordination</h3>
+              <p>Efficient coordination with shipping lines and carriers for vessel schedules, booking requests, container availability, shipping instructions, documentation amendments, sailing updates, and shipment tracking.</p>
               <span class="card-arrow" aria-hidden="true">&#8599;</span>
             </a>
             <a class="service-card" href="pages/solutions.html#transport">
-              <span class="card-number">03 / TRANSPORT</span><span class="service-symbol">&#8644;</span>
-              <h3>
-                Road &amp; Rail Transportation
-              </h3>
-              <p>
-                Reliable nationwide inland transit using dedicated fleet options and specialized routes such as Bhopal–Mumbai. Full railway rake handling and coordination with Indian Railways. Transit insurance arranged through leading underwriters, including New India Assurance and United India Insurance. Consignment tracking and modern IT interfaces monitor cargo status.
-              </p>
-              <span class="card-arrow" aria-hidden="true">&#8599;</span>
-            </a>
-            <a class="service-card" href="pages/solutions.html#warehousing">
-              <span class="card-number">04 / SUPPLY CHAIN</span><span class="service-symbol">&#9632;</span>
-              <h3>
-                Bonded Warehousing &amp; Supply Chain
-              </h3>
-              <p>
-                On-site warehouse complexes and distribution networks. Expert palletizing, wooden crafting, and protective packing. Purchase order monitoring, inventory management, and unit tracing.
-              </p>
+              <img class="service-card-image" src="assets/images/service-port-transport-india.jpg" alt="Indian container truck entering a port terminal" loading="lazy">
+              <span class="card-number">04 / FREIGHT &amp; LOGISTICS</span>
+              <h3>Transportation &amp; Port Coordination</h3>
+              <p>Reliable coordination for container movement, transportation, port entry, terminal handling, cargo examination, delivery schedules, shipment milestones, and operational updates.</p>
               <span class="card-arrow" aria-hidden="true">&#8599;</span>
             </a>
           </div>
@@ -193,7 +182,7 @@
       </section>
       <!-- Company experience feature -->
       <section class="feature-band">
-        <div class="feature-image" role="img" aria-label="Shipping containers at a port">
+        <div class="feature-image" role="img" aria-label="Cheetah transfer by air cargo and tractors transported by Indian freight train">
         </div>
         <div class="feature-content">
           <p class="eyebrow eyebrow-light">
@@ -210,49 +199,67 @@
           </a>
         </div>
       </section>
-      <!-- Short introduction to the enquiry process -->
-      <section class="section process-preview">
+      <!-- Recognition, memberships and documented experience -->
+      <section class="section recognition-section">
         <div class="container">
           <div class="section-heading">
             <div>
               <p class="eyebrow">
-                <span></span> RECOGNITION &amp; TRUST
+                <span></span> RECOGNITION &amp; TRACK RECORD
               </p>
               <h2>
-                Recognized Across<br><em>Global Trade Bodies</em>
+                Connected to Global Trade.<br><em>Proven in Complex Logistics.</em>
               </h2>
             </div>
-            <a class="text-link" href="pages/process.html">
-              Learn about Sea Asia <span aria-hidden="true">&#8594;</span>
+            <a class="text-link" href="pages/why-us.html">
+              Explore our experience <span aria-hidden="true">&#8594;</span>
             </a>
           </div>
-          <div class="steps-grid">
-            <article>
-              <span>01</span>
-              <h3>
-                Industry Affiliations
-              </h3>
-              <p>
-                WCA World — World Cargo Alliance. FIEO — Federation of Indian Export Organisations. IFCBA — International Federation of Customs Brokers Associations.
-              </p>
+          <div class="recognition-list">
+            <article class="recognition-item">
+              <span class="recognition-index">01</span>
+              <div class="recognition-copy">
+                <span class="recognition-kicker">GLOBAL NETWORKS</span>
+                <h3>International trade directories</h3>
+                <p>Sea Asia appears in the India directories of FIATA and IFCBA.</p>
+              </div>
+              <div class="recognition-meta">
+                <a href="https://fiata.org/directory/in/" target="_blank" rel="noopener noreferrer">FIATA listing <span aria-hidden="true">&#8599;</span></a>
+                <a href="https://www.ifcba.org/ab-current-1" target="_blank" rel="noopener noreferrer">IFCBA listing <span aria-hidden="true">&#8599;</span></a>
+              </div>
             </article>
-            <article>
-              <span>02</span>
-              <h3>
-                Freight Forwarding Networks
-              </h3>
-              <p>
-                FFI / FIATA — Federation of Freight Forwarders’ Associations in India. GFN — Global Freight Network.
-              </p>
+            <article class="recognition-item">
+              <span class="recognition-index">02</span>
+              <div class="recognition-copy">
+                <span class="recognition-kicker">CONCOR · ICD MANDIDEEP</span>
+                <h3>Long-term cargo operations</h3>
+                <p>CONCOR records list Sea Asia for empty-container and cargo handling and internal transport under a four-year contract.</p>
+              </div>
+              <div class="recognition-meta">
+                <a href="https://www.concorindia.co.in/assets/pdf/Progressjuly2024.pdf" target="_blank" rel="noopener noreferrer">View CONCOR report <span aria-hidden="true">&#8599;</span></a>
+              </div>
             </article>
-            <article>
-              <span>03</span>
-              <h3>
-                Awards &amp; Accolades
-              </h3>
-              <p>
-                Best CHA Award (2006–2018), CONCOR Annual Award. CONCOR Award 2017: Best CHA — Diamond Class, ICD Mandideep.
-              </p>
+            <article class="recognition-item">
+              <span class="recognition-index">03</span>
+              <div class="recognition-copy">
+                <span class="recognition-kicker">CROSS-BORDER RAIL · 2020</span>
+                <h3>Mandideep to Benapole</h3>
+                <p>A published report documents 100 tractors sent from Mandideep to Bangladesh by freight train.</p>
+              </div>
+              <div class="recognition-meta">
+                <a href="https://timesofindia.indiatimes.com/city/bhopal/freight-train-to-bangladesh-flagged-off-from-mandideep/articleshow/78469047.cms" target="_blank" rel="noopener noreferrer">Read the report <span aria-hidden="true">&#8599;</span></a>
+              </div>
+            </article>
+            <article class="recognition-item recognition-award">
+              <span class="recognition-index">04</span>
+              <div class="recognition-copy">
+                <span class="recognition-kicker">AWARD · 2017</span>
+                <h3>CONCOR Best CHA</h3>
+                <p>Diamond Class · ICD Mandideep</p>
+              </div>
+              <div class="recognition-meta">
+                <span class="recognition-note">Award details</span>
+              </div>
             </article>
           </div>
         </div>
@@ -270,7 +277,7 @@
           </div>
           <div>
             <p>
-              Speak directly with our operational desk or submit your shipment details for custom pricing. Share your full name, company name, phone number, email address, service type (Customs Clearance, Ocean Freight, Air Cargo, Transportation, or Warehousing), and cargo origin, destination, and commodity details.
+              Tell us what you’re shipping, where it needs to go, and which service you need. Our team will review your requirements and get back to you with a tailored quote.
             </p>
             <a class="button button-white" href="contact.html">
               Submit Request <span aria-hidden="true">&#8599;</span>
@@ -281,22 +288,23 @@
     </main>
     <footer class="site-footer">
       <div class="container footer-main">
-        <a class="brand brand-footer" href="index.html">
-          <img class="brand-mark" src="assets/images/logo.png" alt="">
-          <span class="brand-name">SEA ASIA<span>SHIPPING SERVICES LLP</span></span>
-        </a>
-        <p>
-          Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh PIN – 462047.
-        </p>
-        <div class="footer-links">
-          <span>Contact Details</span>
+        <div class="footer-brand-block">
+          <a class="brand brand-footer" href="index.html">
+            <img class="brand-mark" src="assets/images/logo.png" alt="">
+            <span class="brand-name">SEA ASIA<span>SHIPPING SERVICES LLP</span></span>
+          </a>
+          <p>Shipping and logistics support from Bhopal, India.</p>
+        </div>
+        <div class="footer-address">
+          <span class="footer-heading">Visit our office</span>
+          <address>Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh PIN – 462047.</address>
         </div>
         <div class="footer-contact">
-          <span>Email &amp; WhatsApp</span>
-          <a href="mailto:info@seaasiashipping.com">info@seaasiashipping.com</a>
-          <a href="mailto:shikhardhangar0118@gmail.com">shikhardhangar0118@gmail.com</a>
-          <a href="https://www.seaasiashipping.com">www.seaasiashipping.com</a>
-          <a href="https://wa.me/918319852739" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp at 8319852739">WhatsApp: 8319852739</a>
+          <span class="footer-heading">Get in touch</span>
+          <a href="mailto:info@seaasiashipping.com"><span>Email</span>info@seaasiashipping.com</a>
+          <a href="mailto:shikhardhangar0118@gmail.com"><span>Alternate email</span>shikhardhangar0118@gmail.com</a>
+          <a href="https://www.seaasiashipping.com"><span>Website</span>www.seaasiashipping.com</a>
+          <a href="https://wa.me/918319852739" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp at 8319852739"><span>WhatsApp</span>8319852739</a>
         </div>
       </div>
       <div class="container footer-bottom">
