@@ -2916,68 +2916,71 @@ html,body {
   .primary-nav.is-open a { animation: none; }
 }
 
-/* Keep service card hover motion subtle and keep its content in place. */
+/* Restore the image-backed service card transition with smoother timing. */
 .solutions-section .service-card {
   transition: transform .34s cubic-bezier(.2,.7,.25,1),
     box-shadow .34s ease, border-color .28s ease;
 }
 .solutions-section .service-card-image {
-  transition: transform .58s cubic-bezier(.2,.65,.3,1), filter .38s ease;
+  transition: height .48s cubic-bezier(.2,.7,.25,1),
+    transform .68s cubic-bezier(.2,.65,.3,1), filter .38s ease;
 }
 @media (hover:hover) and (pointer:fine) {
   .solutions-section .service-card:hover,
   .solutions-section .service-card:focus-visible {
     z-index: 2;
-    padding: 0 0 42px;
-    transform: translateY(-4px);
-    border-color: rgba(8,127,181,.24);
+    padding-top: 200px;
+    transform: translateY(-5px);
+    border-color: rgba(98,197,230,.72);
     border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 15px 30px rgba(9,44,76,.11);
+    background: #071d32;
+    box-shadow: 0 22px 42px rgba(6,29,51,.24),0 0 0 1px rgba(98,197,230,.14);
   }
   .solutions-section .service-card:hover .service-card-image,
   .solutions-section .service-card:focus-visible .service-card-image {
-    position: relative;
-    inset: auto;
-    z-index: auto;
+    position: absolute;
+    inset: 0;
+    z-index: -2;
     width: 100%;
-    height: 178px;
-    margin: 0 0 22px;
-    transform: scale(1.035);
-    filter: saturate(1.04);
+    height: 100%;
+    margin: 0;
+    transform: scale(1.025);
+    filter: saturate(.94);
   }
   .solutions-section .service-card:hover::after,
   .solutions-section .service-card:focus-visible::after {
-    inset: 0 0 auto;
-    z-index: auto;
-    height: 178px;
+    inset: 0;
+    z-index: -1;
+    height: 100%;
     opacity: 1;
-    background: linear-gradient(180deg,rgba(7,32,52,.02),rgba(7,32,52,.16));
+    background: linear-gradient(180deg,rgba(6,29,51,.68),rgba(6,29,51,.9) 48%,rgba(6,29,51,.97));
   }
   .solutions-section .service-card:hover .card-number,
   .solutions-section .service-card:focus-visible .card-number {
-    border: 0;
-    background: #eaf6fa;
-    color: #087fb5;
+    border: 1px solid rgba(168,234,255,.44);
+    background: rgba(6,29,51,.75);
+    color: #a8eaff;
   }
   .solutions-section .service-card:hover h3,
   .solutions-section .service-card:focus-visible h3 {
-    color: var(--navy);
-    text-shadow: none;
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0,0,0,.2);
   }
   .solutions-section .service-card:hover p,
   .solutions-section .service-card:focus-visible p {
-    color: var(--muted);
-    text-shadow: none;
+    color: #d3e5ef;
+    text-shadow: 0 1px 5px rgba(0,0,0,.2);
   }
   .solutions-section .service-card:hover .card-arrow,
   .solutions-section .service-card:focus-visible .card-arrow {
-    transform: translate(2px,-2px);
-    background: #087fb5;
-    color: #fff;
+    transform: translate(3px,-2px);
+    background: #fff;
+    color: #087fb5;
   }
 }
 @media (max-width: 560px) and (hover:hover) and (pointer:fine) {
+  .solutions-section .service-card:hover,
+  .solutions-section .service-card:focus-visible { padding-top: 227px; }
   .solutions-section .service-card:hover .service-card-image,
   .solutions-section .service-card:focus-visible .service-card-image,
   .solutions-section .service-card:hover::after,
