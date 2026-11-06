@@ -114,7 +114,15 @@
   }
 
   const header = document.querySelector('.site-header');
-  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  const updateHeader = () => {
+    if (!header) return;
+    const currentlyScrolled = header.classList.contains('is-scrolled');
+    const threshold = currentlyScrolled ? 8 : 20;
+    const shouldBeScrolled = window.scrollY > threshold;
+    if (shouldBeScrolled !== currentlyScrolled) {
+      header.classList.toggle('is-scrolled', shouldBeScrolled);
+    }
+  };
   updateHeader();
   window.addEventListener('scroll', updateHeader, { passive: true });
 
@@ -138,10 +146,6 @@
   gsap.registerPlugin(ScrollTrigger);
 
   const ease = 'power3.out';
-  const headerItems = document.querySelectorAll('.site-header .brand-mark, .site-header .brand-name, .site-header .primary-nav a, .site-header .header-cta');
-  if (headerItems.length) {
-    gsap.from(headerItems, { y: 9, autoAlpha: 0, duration: .38, stagger: .035, ease, clearProps: 'transform,opacity' });
-  }
   const homeHero = document.querySelector('.hero');
   if (homeHero) {
     gsap.timeline({ defaults: { ease } })

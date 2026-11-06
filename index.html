@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css?v=20261106-service-card-spotlight">
+    <link rel="stylesheet" href="assets/css/style.css?v=20261106-navbar-smooth">
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-    <script src="assets/js/main.js?v=20261106-service-card-motion" defer></script>
+    <script src="assets/js/main.js?v=20261106-navbar-smooth" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">
@@ -180,7 +180,16 @@
       </section>
       <!-- Company experience feature -->
       <section class="feature-band">
-        <img class="feature-image" src="assets/images/Sunset%20Cargo_%20Trains,%20Planes,%20and%20Cheetah.png" alt="A tractor freight train above a sunset air-cargo operation transporting a cheetah" loading="lazy">
+        <div class="feature-image-gallery" aria-label="Sea Asia logistics project photographs">
+          <a class="feature-photo feature-photo-cheetah" href="assets/images/cheeta.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open the Project Cheetah airport operation photo in full size">
+            <img src="assets/images/cheeta.jpeg" alt="Project Cheetah airport operation with an Indian Air Force cargo aircraft and transport vehicles" loading="lazy">
+            <span>PROJECT CHEETAH <span aria-hidden="true">↗</span></span>
+          </a>
+          <a class="feature-photo feature-photo-rail" href="assets/images/eicher.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Open the Eicher tractor rail export photo in full size">
+            <img src="assets/images/eicher.jpeg" alt="Eicher tractor export team beside the NMG rail rake bound for Bangladesh" loading="lazy">
+            <span>RAIL EXPORT TO BANGLADESH <span aria-hidden="true">↗</span></span>
+          </a>
+        </div>
         <div class="feature-content">
           <p class="eyebrow eyebrow-light">
             <span></span> PROVEN TRACK RECORD
