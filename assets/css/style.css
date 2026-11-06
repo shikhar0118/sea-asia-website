@@ -293,7 +293,8 @@ button {
   pointer-events: none;
 }
 .proof-grid {
-  min-height: 136px;
+  max-width: 1100px;
+  min-height: 76px;
   display: grid;
   grid-template-columns: 1.25fr repeat(4,1fr);
   align-items: center;
@@ -483,12 +484,15 @@ button {
 }
 .feature-band {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 420px;
+  grid-template-columns: minmax(0,1fr);
   background: var(--navy);
 }
 .feature-image {
-  background: url('../images/feature-combined-cheetah-rail.jpg') center/cover;
+  display: block;
+  width: 100%;
+  height: clamp(190px,46vw,560px);
+  object-fit: contain;
+  background: #061a2d;
 }
 .feature-content {
   padding: 75px clamp(32px,7vw,100px);
@@ -1094,7 +1098,7 @@ button {
     grid-template-columns: 1fr;
   }
   .feature-image {
-    min-height: 245px;
+    min-height: 0;
   }
   .feature-content {
     padding: 45px 24px 51px;
@@ -1329,32 +1333,13 @@ html {
 }
 .proof-item {
   position: relative;
-  transition: border-color .3s ease;
 }
 .proof-item::before {
-  content: "";
-  position: absolute;
-  left: 25px;
-  right: 12px;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(90deg,#53d8fa,#168cc5 68%,rgba(22,140,197,0));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .38s cubic-bezier(.2,.8,.2,1);
+  display: none;
 }
 .proof-item strong {
   display: inline-block;
   transform-origin: left center;
-  transition: color .28s ease,text-shadow .28s ease;
-}
-@media (hover:hover) and (pointer:fine) {
-  .proof-item:hover { border-left-color: rgba(111,224,249,.82); }
-  .proof-item:hover::before { transform: scaleX(1); }
-  .proof-item:hover strong {
-    color: #75e1fb;
-    text-shadow: 0 0 16px rgba(98,197,230,.3);
-  }
 }
 .solutions-section {
   position: relative;
@@ -1420,14 +1405,11 @@ html {
 }
 .feature-band {
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: var(--shadow-soft);
 }
 .feature-image {
-  transition: transform .8s cubic-bezier(.2,.8,.2,1);
-}
-.feature-band:hover .feature-image {
-  transform: scale(1.035);
+  transition: none;
 }
 .page-hero {
   isolation: isolate;
@@ -1538,7 +1520,7 @@ html {
     min-height: 0;
   }
   .feature-band {
-    border-radius: 12px;
+    border-radius: 0;
   }
 }
 @media(prefers-reduced-motion:reduce) {
@@ -1550,10 +1532,7 @@ html {
   .service-card,.info-card,.button,.feature-image,.brand-mark,.proof-item {
     transition: none!important;
   }
-  .proof-item:hover { transform: none; background: transparent; box-shadow: none; }
   .proof-item::before { transition: none; }
-  .proof-item:hover::before { transform: scaleX(0); }
-  .proof-item:hover strong { transform: none; text-shadow: none; }
 }
 /* Scroll-linked background movement */
 .hero-photo {
@@ -2268,9 +2247,6 @@ html,body {
   .feature-band {
     grid-template-columns: minmax(0,1fr);
   }
-  .feature-image {
-    min-height: 220px;
-  }
   .feature-content {
     padding: 38px 22px 42px;
   }
@@ -2863,6 +2839,15 @@ html,body {
     font-size: 10px;
     line-height: 1.45;
   }
+  .proof-item.proof-year:first-of-type {
+    gap: 3px;
+    padding-block: 16px;
+    padding-inline: 12px;
+  }
+  .proof-year>span {
+    margin-top: 2px;
+    line-height: 1.5;
+  }
   .proof-item::before {
     left: 12px;
     right: 12px;
@@ -2931,6 +2916,85 @@ html,body {
   .primary-nav.is-open a { animation: none; }
 }
 
+/* Keep service card hover motion subtle and keep its content in place. */
+.solutions-section .service-card {
+  transition: transform .34s cubic-bezier(.2,.7,.25,1),
+    box-shadow .34s ease, border-color .28s ease;
+}
+.solutions-section .service-card-image {
+  transition: transform .58s cubic-bezier(.2,.65,.3,1), filter .38s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .solutions-section .service-card:hover,
+  .solutions-section .service-card:focus-visible {
+    z-index: 2;
+    padding: 0 0 42px;
+    transform: translateY(-4px);
+    border-color: rgba(8,127,181,.24);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 15px 30px rgba(9,44,76,.11);
+  }
+  .solutions-section .service-card:hover .service-card-image,
+  .solutions-section .service-card:focus-visible .service-card-image {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    width: 100%;
+    height: 178px;
+    margin: 0 0 22px;
+    transform: scale(1.035);
+    filter: saturate(1.04);
+  }
+  .solutions-section .service-card:hover::after,
+  .solutions-section .service-card:focus-visible::after {
+    inset: 0 0 auto;
+    z-index: auto;
+    height: 178px;
+    opacity: 1;
+    background: linear-gradient(180deg,rgba(7,32,52,.02),rgba(7,32,52,.16));
+  }
+  .solutions-section .service-card:hover .card-number,
+  .solutions-section .service-card:focus-visible .card-number {
+    border: 0;
+    background: #eaf6fa;
+    color: #087fb5;
+  }
+  .solutions-section .service-card:hover h3,
+  .solutions-section .service-card:focus-visible h3 {
+    color: var(--navy);
+    text-shadow: none;
+  }
+  .solutions-section .service-card:hover p,
+  .solutions-section .service-card:focus-visible p {
+    color: var(--muted);
+    text-shadow: none;
+  }
+  .solutions-section .service-card:hover .card-arrow,
+  .solutions-section .service-card:focus-visible .card-arrow {
+    transform: translate(2px,-2px);
+    background: #087fb5;
+    color: #fff;
+  }
+}
+@media (max-width: 560px) and (hover:hover) and (pointer:fine) {
+  .solutions-section .service-card:hover .service-card-image,
+  .solutions-section .service-card:focus-visible .service-card-image,
+  .solutions-section .service-card:hover::after,
+  .solutions-section .service-card:focus-visible::after {
+    height: 205px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .solutions-section .service-card,
+  .solutions-section .service-card-image,
+  .solutions-section .service-card .card-arrow { transition: none; }
+  .solutions-section .service-card:hover,
+  .solutions-section .service-card:focus-visible { transform: none; }
+  .solutions-section .service-card:hover .service-card-image,
+  .solutions-section .service-card:focus-visible .service-card-image { transform: none; }
+}
+
 /* Keep the full airplane visible without changing the source image. */
 .hero.is-air-scene .hero-photo.is-active {
   animation: none;
@@ -2962,4 +3026,138 @@ html,body {
   background: #a6edff;
   color: #06253b;
   box-shadow: 0 12px 28px rgba(1,25,42,.3),0 0 0 4px rgba(166,237,255,.15);
+}
+
+/* Featured company metrics */
+.feature-band {
+  grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
+  align-items: stretch;
+  min-height: 650px;
+}
+.feature-image {
+  height: 100%;
+  min-height: 650px;
+  object-fit: cover;
+  object-position: center center;
+}
+@media (max-width: 980px) {
+  .feature-band {
+    grid-template-columns: minmax(0,1fr);
+    align-items: start;
+    min-height: 0;
+  }
+  .feature-image {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+.proof-strip {
+  padding-block: 0;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(32,155,205,.24), transparent 36%),
+    linear-gradient(112deg, #071b30 0%, #0a2b49 55%, #073956 100%);
+}
+.proof-grid {
+  min-height: 136px;
+  grid-template-columns: 1.25fr repeat(4,minmax(0,1fr));
+  gap: 0;
+  align-items: center;
+}
+.proof-item,
+.proof-item:first-of-type {
+  min-width: 0;
+  min-height: 0;
+  justify-content: center;
+  padding: 0 18px;
+  border: 0;
+  border-left: 1px solid rgba(131,210,237,.28);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.proof-item:first-of-type {
+  padding-left: 0;
+  border-left: 0;
+}
+.proof-item::before {
+  top: auto;
+  right: 12px;
+  bottom: 0;
+  left: 18px;
+  width: auto;
+  height: 1px;
+  border-radius: 0;
+  opacity: .75;
+  transform: scaleX(0);
+}
+.proof-item strong {
+  font-size: 22px;
+  letter-spacing: -.04em;
+}
+.proof-item>span {
+  max-width: 140px;
+  margin-top: 4px;
+  font-size: 9px;
+  line-height: 1.4;
+}
+.proof-item.proof-year {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  align-items: center;
+  column-gap: 12px;
+}
+.proof-item.proof-year>strong {
+  grid-column: 1;
+  grid-row: 1;
+}
+.proof-item.proof-year>span {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: none;
+  margin-top: 0;
+}
+@media (max-width: 980px) {
+  .proof-grid {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    padding-block: 18px;
+  }
+  .proof-item.proof-year {
+    grid-column: 1 / -1;
+    margin-bottom: 14px;
+    padding: 0 0 12px;
+    border: 0;
+    border-bottom: 1px solid rgba(131,210,237,.24);
+  }
+}
+@media (max-width: 720px) {
+  .proof-strip {
+    padding-block: 0;
+  }
+  .proof-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 14px 12px;
+    padding-block: 20px;
+  }
+  .proof-item.proof-year {
+    grid-column: 1 / -1;
+    margin: 0 0 2px;
+    padding: 0 0 14px;
+  }
+  .proof-item:nth-child(2),
+  .proof-item:nth-child(4) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .proof-item:nth-child(3),
+  .proof-item:nth-child(5) {
+    padding-left: 14px;
+    border-left: 1px solid rgba(131,210,237,.28);
+  }
+  .proof-item strong { font-size: 20px; }
+  .proof-item>span { margin-top: 5px; font-size: 9px; }
+  .proof-item::before { left: 0; right: 10px; }
 }

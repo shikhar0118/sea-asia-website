@@ -122,13 +122,17 @@
   // is unavailable, and leave the normal page fully visible for reduced motion.
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const proofStrip = document.querySelector('.proof-strip');
-  if (proofStrip && !reduceMotion && 'IntersectionObserver' in window) {
-    const proofObserver = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
+  if (proofStrip && !reduceMotion) {
+    if ('IntersectionObserver' in window) {
+      const proofObserver = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        proofStrip.classList.add('is-live');
+        proofObserver.disconnect();
+      }, { threshold: 0.28 });
+      proofObserver.observe(proofStrip);
+    } else {
       proofStrip.classList.add('is-live');
-      proofObserver.disconnect();
-    }, { threshold: 0.28 });
-    proofObserver.observe(proofStrip);
+    }
   }
   if (!window.gsap || !window.ScrollTrigger || reduceMotion) return;
   gsap.registerPlugin(ScrollTrigger);
@@ -166,14 +170,16 @@
   document.querySelectorAll('.service-grid, .page-grid, .steps-grid, .recognition-list').forEach((grid) => {
     const cards = grid.querySelectorAll('.service-card, .info-card, .recognition-item, article');
     if (!cards.length) return;
-    gsap.fromTo(cards, { y: 24, autoAlpha: 0 }, {
-      y: 0, autoAlpha: 1, duration: .62, stagger: .09, ease, clearProps: 'transform,opacity',
+    gsap.fromTo(cards, { y: 16, autoAlpha: 0 }, {
+      y: 0, autoAlpha: 1, duration: .54, stagger: .08, ease, clearProps: 'transform,opacity',
       scrollTrigger: { trigger: grid, start: 'top 88%', once: true }
     });
   });
 
   // Count the existing proof values in place, retaining their suffix markup.
   document.querySelectorAll('.proof-item strong').forEach((value) => {
+    // Establishment years are dates, so keep them ungrouped (2013, not 2,013).
+    if (value.closest('.proof-year')) return;
     const textNode = [...value.childNodes].find((node) => node.nodeType === Node.TEXT_NODE);
     if (!textNode) return;
     const match = textNode.textContent.trim().match(/^(\d[\d,]*)/);
@@ -196,12 +202,6 @@
     gsap.to(photo, {
       yPercent: 3, ease: 'none',
       scrollTrigger: { trigger: photo.closest('.hero'), start: 'top top', end: 'bottom top', scrub: .8 }
-    });
-  });
-  gsap.utils.toArray('.feature-image').forEach((image) => {
-    gsap.fromTo(image, { backgroundPositionY: '44%' }, {
-      backgroundPositionY: '62%', ease: 'none',
-      scrollTrigger: { trigger: image.closest('.feature-band'), start: 'top bottom', end: 'bottom top', scrub: .8 }
     });
   });
 })();
