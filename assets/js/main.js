@@ -7,8 +7,25 @@
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', 'Open menu');
       nav.classList.remove('is-open');
+      nav.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+        dropdown.classList.remove('is-open');
+        dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-label', 'Open Solutions menu');
+      });
       if (returnFocus) toggle.focus();
     };
+
+    nav.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+      const button = dropdown.querySelector('.nav-dropdown-toggle');
+      button.addEventListener('click', () => {
+        const open = !dropdown.classList.contains('is-open');
+        nav.querySelectorAll('.nav-dropdown').forEach(other => {
+          other.classList.toggle('is-open', other === dropdown && open);
+          other.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', String(other === dropdown && open));
+          other.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-label', other === dropdown && open ? 'Close Solutions menu' : 'Open Solutions menu');
+        });
+      });
+    });
 
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') !== 'true';

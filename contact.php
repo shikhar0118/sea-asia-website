@@ -38,8 +38,8 @@ function h(string $value): string
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="index.html">
-          <img class="brand-mark" src="assets/images/sea-asia-emblem.png" alt="">
-          <span class="brand-name">SEA ASIA<span>SHIPPING SERVICES LLP</span></span>
+          <img class="brand-mark" src="assets/images/Sea Asia Shipping Services Logo.png" alt="Sea Asia Shipping Services LLP">
+          
         </a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
           <span></span><span></span><span></span>
@@ -51,15 +51,20 @@ function h(string $value): string
           <a href="pages/Explore%20Sea%20Asia.html">
             Explore Sea Asia
           </a>
-          <a href="pages/solutions.html">
-            Solutions
-          </a>
-          <a href="pages/why-us.html">
-            Why Us
-          </a>
-          <a href="pages/process.html">
-            Our Processes
-          </a>
+          <div class="nav-dropdown">
+  <a class="nav-dropdown-link" href="pages/solutions.html">Solutions</a>
+  <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-label="Open Solutions menu"><span class="nav-dropdown-chevron" aria-hidden="true"></span></button>
+  <div class="nav-dropdown-menu" aria-label="Solutions">
+    <a href="pages/solutions.html#customs">Customs House Agency (CHA)</a>
+    <a href="pages/solutions.html#export">Export Clearance &amp; Documentation</a>
+    <a href="pages/solutions.html#import">Import Clearance &amp; Documentation</a>
+    <a href="pages/solutions.html#carrier-coordination">Shipping Line &amp; Carrier Coordination</a>
+    <a href="pages/solutions.html#exim-compliance">EXIM Documentation &amp; Compliance</a>
+    <a href="pages/solutions.html#freight">Freight &amp; Logistics Coordination</a>
+    <a href="pages/solutions.html#port-operations">Port &amp; Cargo Handling</a>
+    <a href="pages/solutions.html#shipment-tracking">Client Support &amp; Shipment Tracking</a>
+  </div>
+</div>
           <a href="pages/gallery.html">
             Gallery
           </a>
@@ -195,8 +200,8 @@ function h(string $value): string
     <footer class="site-footer">
       <div class="container footer-main">
         <a class="brand brand-footer" href="index.html">
-          <img class="brand-mark" src="assets/images/sea-asia-emblem.png" alt="">
-          <span class="brand-name">SEA ASIA<span>SHIPPING SERVICES LLP</span></span>
+          <img class="brand-mark" src="assets/images/Sea Asia Shipping Services Logo.png" alt="Sea Asia Shipping Services LLP">
+          
         </a>
         <p>
           Shipping and logistics support<br>from Bhopal, Madhya Pradesh.
@@ -206,12 +211,7 @@ function h(string $value): string
           <a href="pages/Explore%20Sea%20Asia.html">
             Explore Sea Asia
           </a>
-          <a href="pages/solutions.html">
-            Solutions
-          </a>
-          <a href="pages/process.html">
-            Our Processes
-          </a>
+          <a href="pages/solutions.html">Solutions</a>
           <a href="contact.html">
             Contact
           </a>
