@@ -166,16 +166,16 @@
   ].join(',');
   document.querySelectorAll(revealSelector).forEach((element, index) => {
     gsap.from(element, {
-      y: 20, autoAlpha: 0, duration: .58, delay: index % 2 ? .04 : 0, ease,
+      y: 28, scale: .985, autoAlpha: 0, duration: .64, delay: index % 2 ? .04 : 0, ease,
       scrollTrigger: { trigger: element, start: 'top 90%', once: true }
     });
   });
 
-  document.querySelectorAll('.service-grid, .page-grid, .steps-grid, .recognition-list').forEach((grid) => {
-    const cards = grid.querySelectorAll('.service-card, .info-card, .recognition-item, article');
+  document.querySelectorAll('.service-grid, .page-grid, .steps-grid, .recognition-list, .feature-image-gallery').forEach((grid) => {
+    const cards = grid.querySelectorAll('.service-card, .info-card, .recognition-item, .feature-photo, article');
     if (!cards.length) return;
-    gsap.fromTo(cards, { y: 16, autoAlpha: 0 }, {
-      y: 0, autoAlpha: 1, duration: .54, stagger: .08, ease, clearProps: 'transform,opacity',
+    gsap.fromTo(cards, { y: 32, scale: .94, autoAlpha: 0 }, {
+      y: 0, scale: 1, autoAlpha: 1, duration: .68, stagger: .1, ease: 'back.out(1.2)', clearProps: 'transform,opacity',
       scrollTrigger: { trigger: grid, start: 'top 88%', once: true }
     });
   });
