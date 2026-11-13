@@ -20,7 +20,7 @@ function h(string $value): string
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <meta name="description" content="Contact Sea Asia Shipping Services LLP in Bhopal, Madhya Pradesh, for logistics and shipping enquiries.">
     <title>Contact | Sea Asia Shipping Services LLP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@ function h(string $value): string
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="index.html">
-          <img class="brand-mark" src="assets/images/Sea Asia Shipping Services Logo.png" alt="Sea Asia Shipping Services LLP">
+          <img class="brand-mark" src="assets/images/logo.png" alt="Sea Asia Shipping Services LLP">
           
         </a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
@@ -55,14 +55,14 @@ function h(string $value): string
   <a class="nav-dropdown-link" href="pages/solutions.html">Solutions</a>
   <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-label="Open Solutions menu"><span class="nav-dropdown-chevron" aria-hidden="true"></span></button>
   <div class="nav-dropdown-menu" aria-label="Solutions">
-    <a href="pages/solutions.html#customs">Customs House Agency (CHA)</a>
-    <a href="pages/solutions.html#export">Export Clearance &amp; Documentation</a>
-    <a href="pages/solutions.html#import">Import Clearance &amp; Documentation</a>
-    <a href="pages/solutions.html#carrier-coordination">Shipping Line &amp; Carrier Coordination</a>
-    <a href="pages/solutions.html#exim-compliance">EXIM Documentation &amp; Compliance</a>
-    <a href="pages/solutions.html#freight">Freight &amp; Logistics Coordination</a>
-    <a href="pages/solutions.html#port-operations">Port &amp; Cargo Handling</a>
-    <a href="pages/solutions.html#shipment-tracking">Client Support &amp; Shipment Tracking</a>
+    <a href="pages/service-customs.html">Customs House Agency (CHA)</a>
+    <a href="pages/service-export.html">Export Clearance &amp; Documentation</a>
+    <a href="pages/service-import.html">Import Clearance &amp; Documentation</a>
+    <a href="pages/service-carrier-coordination.html">Shipping Line &amp; Carrier Coordination</a>
+    <a href="pages/service-exim-compliance.html">EXIM Documentation &amp; Compliance</a>
+    <a href="pages/service-freight.html">Freight &amp; Logistics Coordination</a>
+    <a href="pages/service-port-operations.html">Port &amp; Cargo Handling</a>
+    <a href="pages/service-shipment-tracking.html">Client Support &amp; Shipment Tracking</a>
   </div>
 </div>
           <a href="pages/gallery.html">
@@ -73,7 +73,7 @@ function h(string $value): string
           </a>
         </nav>
         <a class="button button-small header-cta" href="contact.html">
-          Request a Quote <span>&#8599;</span>
+          Request a Quote
         </a>
       </div>
     </header>
@@ -198,36 +198,13 @@ function h(string $value): string
       </section>
     </main>
     <footer class="site-footer">
-      <div class="container footer-main">
-        <a class="brand brand-footer" href="index.html">
-          <img class="brand-mark" src="assets/images/Sea Asia Shipping Services Logo.png" alt="Sea Asia Shipping Services LLP">
-          
-        </a>
-        <p>
-          Shipping and logistics support<br>from Bhopal, Madhya Pradesh.
-        </p>
-        <div class="footer-links">
-          <span>Explore</span>
-          <a href="pages/Explore%20Sea%20Asia.html">
-            Explore Sea Asia
-          </a>
-          <a href="pages/solutions.html">Solutions</a>
-          <a href="contact.html">
-            Contact
-          </a>
-        </div>
-        <div class="footer-contact">
-          <span>Get in touch</span>
-          <a href="contact.html">
-            Send an enquiry &#8599;
-          </a>
-          <a href="mailto:shikhardhangar0118@gmail.com">shikhardhangar0118@gmail.com</a>
-          <a href="https://wa.me/918319852739" target="_blank" rel="noopener noreferrer">WhatsApp: 8319852739</a>
-        </div>
-      </div>
-      <div class="container footer-bottom">
-        <span>&copy; <span data-year>2026</span> SEA ASIA SHIPPING SERVICES LLP</span><span>Bhopal, Madhya Pradesh, India</span>
-      </div>
-    </footer>
+  <div class="container footer-main">
+    <a class="brand brand-footer" href="index.html" aria-label="Sea Asia Shipping Services LLP home"><img class="brand-mark" src="assets/images/logo.png" alt="Sea Asia Shipping Services LLP"></a>
+    <p>Shipping and logistics support<br>from Bhopal, Madhya Pradesh.</p>
+    <div class="footer-links"><span>Explore</span><a href="pages/Explore%20Sea%20Asia.html">Explore Sea Asia</a><a href="pages/solutions.html">Solutions</a><a href="contact.html">Contact</a></div>
+    <div class="footer-contact"><span>Get in touch</span><a href="contact.html">Send an enquiry &#8599;</a></div>
+  </div>
+  <div class="container footer-bottom"><span>&#169; <span data-year>2026</span> Sea Asia Shipping Services LLP</span><span>Bhopal, Madhya Pradesh, India</span></div>
+</footer>
   </body>
 </html>

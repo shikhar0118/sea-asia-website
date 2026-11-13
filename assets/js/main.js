@@ -55,6 +55,43 @@
     el.textContent = new Date().getFullYear();
   });
 
+  // CHA page scroll progress and lightweight reveal effects (no animation CDN required).
+  const chaContent = document.querySelector('.cha-content-section');
+  if (chaContent) {
+    const progressBar = document.querySelector('.cha-scroll-progress > span');
+    const updateChaProgress = () => {
+      if (!progressBar) return;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+      progressBar.style.transform = `scaleX(${progress})`;
+    };
+    updateChaProgress();
+    window.addEventListener('scroll', updateChaProgress, { passive: true });
+    window.addEventListener('resize', updateChaProgress, { passive: true });
+    window.addEventListener('load', updateChaProgress, { once: true });
+
+    const chaMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const chaRevealTargets = document.querySelectorAll([
+      '.service-visual-frame', '.cha-intro-block', '.cha-overview-visual', '.cha-section-heading',
+      '.cha-service-item', '.cha-process-list > li', '.cha-document-card',
+      '.cha-benefit-grid article', '.cha-approach-section', '.cha-faq-list > details', '.cha-cta-panel'
+    ].join(','));
+    if (!chaMotionReduced && 'IntersectionObserver' in window) {
+      const chaRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+      chaRevealTargets.forEach((element, index) => {
+        element.classList.add('cha-scroll-reveal');
+        element.style.setProperty('--cha-reveal-delay', `${(index % 5) * 70}ms`);
+        chaRevealObserver.observe(element);
+      });
+    }
+  }
+
   // Homepage service slideshow. Scene order matches the image order in index.html.
   const hero = document.querySelector('.hero');
   if (hero) {
