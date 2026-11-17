@@ -113,12 +113,12 @@ if (!is_array($hostingConfig)) {
 }
 
 $apiKey = getenv('RESEND_API_KEY') ?: (string) ($hostingConfig['RESEND_API_KEY'] ?? '');
-$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? 'shikhardhangar0118@gmail.com');
+$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? 'info@seaasiashipping.com');
 $sender = getenv('CONTACT_FROM_EMAIL') ?: (string) ($hostingConfig['CONTACT_FROM_EMAIL'] ?? '');
 
 if ($apiKey === '' || $sender === '') {
     error_log('Sea Asia contact form: email delivery is not configured.');
-    $error = 'Enquiry sending is not configured yet. Please contact us by email or WhatsApp.';
+    $error = 'Enquiry sending is not configured yet. Please email info@seaasiashipping.com.';
     if ($isJsonRequest) {
         respondWithJson(503, $error);
     }

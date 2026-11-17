@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seaasiashipping.com/sitemap.xml

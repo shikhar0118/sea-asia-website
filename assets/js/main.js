@@ -109,7 +109,7 @@
       {
         eyebrow: '03 / SHIPPING & CARRIER',
         title: 'Shipping Line & Carrier Coordination',
-        copy: 'Efficient coordination with shipping lines and carriers for vessel schedules, booking requests, container availability, shipping instructions, documentation amendments, sailing updates, and shipment tracking.'
+        copy: 'Efficient coordination with shipping lines and carriers for vessel schedules, booking requests, container availability, shipping instructions, documentation amendments, and sailing updates.'
       },
       {
         eyebrow: '04 / FREIGHT & LOGISTICS',

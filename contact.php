@@ -36,7 +36,7 @@ function h(string $value): string
       Skip to content
     </a>
     <header class="site-header">
-    <div class="header-contact-bar"><div class="container header-contact-inner"><span class="header-contact-location"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.1 6-10a6 6 0 1 0-12 0c0 4.9 6 10 6 10Z"/><circle cx="10" cy="8" r="2"/></svg><span>Shipping and logistics support <b>·</b> Bhopal, India</span></span><div class="header-contact-links"><a href="mailto:info@seaasiashipping.com" aria-label="Email Sea Asia at info@seaasiashipping.com"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="1.5"/><path d="m3.5 5 6.5 5 6.5-5"/></svg><span>info@seaasiashipping.com</span></a><a href="tel:+918319852739" aria-label="Call Sea Asia at plus 91 83198 52739"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.2 2.8h2.4l1.2 3.5-1.7 1.4a12.2 12.2 0 0 0 5.2 5.2l1.4-1.7 3.5 1.2v2.4a1.7 1.7 0 0 1-1.8 1.7A13.7 13.7 0 0 1 3.5 4.6a1.7 1.7 0 0 1 1.7-1.8Z"/></svg><span>+91 83198 52739</span></a></div></div></div>
+    <div class="header-contact-bar"><div class="container header-contact-inner"><span class="header-contact-location"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.1 6-10a6 6 0 1 0-12 0c0 4.9 6 10 6 10Z"/><circle cx="10" cy="8" r="2"/></svg><span>Shipping and logistics support <b>·</b> Bhopal, India</span></span><div class="header-contact-links"><a href="mailto:info@seaasiashipping.com" aria-label="Email Sea Asia at info@seaasiashipping.com"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="1.5"/><path d="m3.5 5 6.5 5 6.5-5"/></svg><span>info@seaasiashipping.com</span></a></div></div></div>
       <div class="container header-inner">
         <a class="brand" href="index.html">
           <img class="brand-mark" src="assets/images/logo.png" alt="Sea Asia Shipping Services LLP">
@@ -77,60 +77,36 @@ function h(string $value): string
         </a>
       </div>
     </header>
-    <main id="main">
-      <section class="page-hero">
+    <main id="main" class="contact-page">
+      <section class="contact-hero">
         <div class="container">
-          <p class="breadcrumb">
-            <a href="index.html">
-              Home
-            </a>
-            / Contact
-          </p>
+          <div class="contact-hero-inner">
+          <div class="contact-hero-copy">
+          <p class="breadcrumb"><a href="index.html">Home</a> / Contact</p>
           <p class="eyebrow eyebrow-light">
             <span></span> CONTACT SEA ASIA
           </p>
-          <h1>
-            Let&rsquo;s talk about<br><em>your shipment.</em>
-          </h1>
-          <p>
-            Send us a few details and our team can follow up about your logistics requirements.
-          </p>
+          <h1>Let&rsquo;s move<br><em>business forward.</em></h1>
+          <p>Tell us about your shipment, documentation, or logistics needs. We&rsquo;ll help you identify the right next step.</p>
+          <div class="contact-hero-tags"><span>Customs &amp; compliance</span><span>Freight coordination</span><span>Warehousing</span></div>
+          </div>
+          <div class="contact-hero-card" aria-label="Contact details"><span class="contact-hero-card-kicker">SEA ASIA SHIPPING SERVICES</span><span class="contact-hero-card-line" aria-hidden="true"></span><p>Clear coordination for every stage of your cargo journey.</p><a href="mailto:info@seaasiashipping.com"><span class="contact-hero-card-label">WRITE TO OUR TEAM</span><strong>info@seaasiashipping.com</strong><span aria-hidden="true">&#8599;</span></a><div class="contact-hero-card-foot"><span class="contact-status-dot"></span> Based in Bhopal, India <span>·</span> Supporting global trade</div></div>
+          </div>
         </div>
       </section>
-      <section class="content-section">
+      <section class="contact-main-section">
         <div class="container contact-layout">
           <!-- Business location and service information -->
           <aside class="contact-details">
-            <p class="eyebrow eyebrow-light">
-              <span></span> START A CONVERSATION
-            </p>
-            <h2>
-              Tell us what you&rsquo;re moving.
-            </h2>
-            <p>
-              SEA ASIA SHIPPING SERVICES LLP began in Madhya Pradesh and supports customs clearance, freight forwarding and supply chain operations across India and worldwide.
-            </p>
-            <p class="detail-label">
-              Head Office
-            </p>
-            <p>
-              Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh PIN &ndash; 462047
-            </p>
-            <p class="detail-label">
-              Email Us
-            </p>
-            <p>
-              <a href="mailto:info@seaasiashipping.com">info@seaasiashipping.com</a><br>
-              <a href="mailto:shikhardhangar0118@gmail.com">shikhardhangar0118@gmail.com</a>
-            </p>
-            <p class="detail-label">
-              WhatsApp Us
-            </p>
-            <p>
-              <a href="https://wa.me/918319852739" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp at 8319852739">8319852739</a>
-            </p>
+            <p class="eyebrow"><span></span> START A CONVERSATION</p>
+            <h2>What can we help you coordinate?</h2>
+            <p class="contact-details-lead">Share a few details and our team can understand your requirements and follow up by email.</p>
+            <div class="contact-info-block"><span class="contact-info-icon" aria-hidden="true">01</span><div><p class="detail-label">Visit our office</p><p>Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh 462047</p></div></div>
+            <div class="contact-info-block"><span class="contact-info-icon" aria-hidden="true">02</span><div><p class="detail-label">Email our team</p><p><a href="mailto:info@seaasiashipping.com">info@seaasiashipping.com</a></p></div></div>
+            <div class="contact-support-note"><span aria-hidden="true">↗</span><p><strong>Helpful details to include</strong><br>Cargo type, origin and destination, expected timing, and the support you need.</p></div>
           </aside>
-          <div>
+          <div class="contact-form-column">
+            <div class="contact-form-heading"><div><p class="eyebrow"><span></span> SEND AN ENQUIRY</p><h2>Tell us about your shipment</h2></div><span class="contact-required-note">* Required fields</span></div>
             <!-- Enquiry form and its submission status -->
             <?php if ($status): ?>
             <div class="form-status <?= ($status['type'] ?? '') === 'error' ? 'error' : '' ?>" role="status">
@@ -202,7 +178,7 @@ function h(string $value): string
     <a class="brand brand-footer" href="index.html" aria-label="Sea Asia Shipping Services LLP home"><img class="brand-mark" src="assets/images/logo.png" alt="Sea Asia Shipping Services LLP"></a>
     <p>Shipping and logistics support<br>from Bhopal, Madhya Pradesh.</p>
     <div class="footer-links"><span>Explore</span><a href="pages/Explore%20Sea%20Asia.html">Explore Sea Asia</a><a href="pages/solutions.html">Solutions</a><a href="pages/gallery.html">Gallery</a><a href="contact.html">Contact</a></div>
-    <div class="footer-contact"><span class="footer-heading">Get in touch</span><a class="footer-detail-link" href="mailto:info@seaasiashipping.com"><span class="footer-detail-label">Email</span>info@seaasiashipping.com</a><a class="footer-detail-link" href="tel:+918319852739"><span class="footer-detail-label">Phone</span>+91 83198 52739</a></div>
+    <div class="footer-contact"><span class="footer-heading">Get in touch</span><a class="footer-detail-link" href="mailto:info@seaasiashipping.com"><span class="footer-detail-label">Email</span>info@seaasiashipping.com</a></div>
   </div>
   <div class="container footer-bottom"><span>&#169; <span data-year>2026</span> Sea Asia Shipping Services LLP</span><span>Bhopal, Madhya Pradesh, India</span></div>
 </footer>
