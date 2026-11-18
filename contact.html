@@ -90,7 +90,8 @@
           <div class="contact-form-column">
             <div class="contact-form-heading"><div><p class="eyebrow"><span></span> SEND AN ENQUIRY</p><h2>Tell us about your shipment</h2></div><span class="contact-required-note">* Required fields</span></div>
           <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
-          <form class="contact-form" id="contact-form" action="api/contact-submit.php" method="post">
+          <form class="contact-form" id="contact-form" action="api/contact-submit.php" method="post" novalidate>
+            <input type="hidden" id="submission-id" name="submission_id" value="">
             <div class="hp-field" aria-hidden="true">
               <label for="website">Leave this field empty</label>
               <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
@@ -105,7 +106,8 @@
             </div>
             <div class="form-field">
               <label for="email">Work email *</label>
-              <input id="email" name="email" type="email" required maxlength="190" autocomplete="email">
+              <input id="email" name="email" type="email" required maxlength="190" autocomplete="email" aria-describedby="email-error">
+              <p class="form-field-error" id="email-error" role="alert" hidden></p>
             </div>
             <div class="form-field">
               <label for="phone">Phone</label>
@@ -136,25 +138,16 @@
             </div>
           </form>
           </div>
-          <div class="contact-branches-block">
-            <div class="contact-branches-heading"><p class="detail-label">OUR NETWORK <span>·</span> 9 LOCATIONS</p><h2>Closer to cargo.<br><em>Across India.</em></h2><p>Local coordination for your shipping and logistics requirements.</p><ul class="branch-list" aria-label="Sea Asia branch locations"><li>Mumbai</li><li>Bhopal</li><li>Indore</li><li>Mundra</li><li>Gujarat</li><li>Nagpur</li><li>Delhi</li><li>Ludhiana</li><li>Raipur</li></ul></div>
-            <figure class="contact-branches-visual team-carousel" data-team-carousel aria-roledescription="carousel" aria-label="Sea Asia team photos">
-              <div class="team-carousel-slides">
-                <img class="team-carousel-slide is-active" src="assets/images/IMG-20260929-WA0001.jpg" alt="Sea Asia colleagues gathered at a company event" aria-hidden="false">
-                <img class="team-carousel-slide" src="assets/images/IMG-20260929-WA0014.jpg" alt="Sea Asia team posing together at a company celebration" loading="lazy" aria-hidden="true">
-                <img class="team-carousel-slide" src="assets/images/IMG-20260929-WA0016.jpg" alt="Sea Asia colleagues attending a team gathering" loading="lazy" aria-hidden="true">
-                <img class="team-carousel-slide" src="assets/images/IMG-20260929-WA0017.jpg" alt="Sea Asia team members at an indoor company event" loading="lazy" aria-hidden="true">
-                <img class="team-carousel-slide" src="assets/images/IMG-20260929-WA0018.jpg" alt="Sea Asia colleagues seated together at a company event" loading="lazy" aria-hidden="true">
-              </div>
-              <figcaption><span>SEA ASIA SHIPPING SERVICES</span><strong>People behind every coordinated move.</strong></figcaption>
-              <div class="team-carousel-controls" aria-label="Slideshow controls">
-                <button type="button" data-team-previous aria-label="Previous team photo">&#8592;</button>
-                <span data-team-counter aria-live="off">1 / 5</span>
-                <button type="button" data-team-toggle aria-label="Pause slideshow" aria-pressed="false">Pause</button>
-                <button type="button" data-team-next aria-label="Next team photo">&#8594;</button>
-              </div>
-            </figure>
-          </div>
+          <section class="contact-branches-block" aria-labelledby="network-title">
+            <div class="contact-branches-heading">
+              <p class="detail-label">OUR NETWORK <span>·</span> 9 LOCATIONS</p>
+              <h2 id="network-title">Closer to cargo.<br><em>Across India.</em></h2>
+              <p>Local coordination for your shipping and logistics requirements.</p>
+            </div>
+            <div class="india-map">
+              <img class="india-map-shape" src="assets/images/India%20Presence%20Map%20Transparent.png" alt="India map with Sea Asia branch locations including Mumbai, Bhopal, Indore, Mundra, Gujarat, Nagpur, Delhi, Ludhiana, and Raipur">
+            </div>
+          </section>
         </div>
       </section>
     </main>
@@ -171,9 +164,33 @@
       const contactForm = document.getElementById('contact-form');
       const formStatus = document.getElementById('form-status');
       const submitButton = contactForm.querySelector('button[type="submit"]');
+      const submissionIdField = document.getElementById('submission-id');
+      const createSubmissionId = () => window.crypto?.randomUUID
+        ? window.crypto.randomUUID()
+        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+      submissionIdField.value = createSubmissionId();
+      const refreshSubmissionId = () => {
+        if (!submitButton.disabled) submissionIdField.value = createSubmissionId();
+      };
+      contactForm.addEventListener('input', refreshSubmissionId);
+      contactForm.addEventListener('change', refreshSubmissionId);
 
       contactForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+        const emailField = contactForm.elements.email;
+        const emailError = document.getElementById('email-error');
+        emailError.textContent = '';
+        emailError.hidden = true;
+        emailField.removeAttribute('aria-invalid');
+        if (!emailField.value.trim() || !emailField.validity.valid) {
+          emailError.textContent = emailField.value.trim()
+            ? 'Enter a valid email address, for example name@company.com.'
+            : 'Please enter your work email address.';
+          emailError.hidden = false;
+          emailField.setAttribute('aria-invalid', 'true');
+          emailField.focus();
+          return;
+        }
         submitButton.disabled = true;
         submitButton.textContent = 'Sending…';
         formStatus.hidden = true;
@@ -192,10 +209,11 @@
             throw new Error('The enquiry service is not available here. Please email info@seaasiashipping.com.');
           }
           if (!response.ok || !result.ok) {
-            throw new Error(result.message || 'We could not save your enquiry. Please try again.');
+            throw new Error(result.message || 'We could not send your enquiry. Please try again.');
           }
 
           contactForm.reset();
+          submissionIdField.value = createSubmissionId();
           formStatus.textContent = result.message;
           formStatus.classList.remove('error');
         } catch (error) {
@@ -208,6 +226,15 @@
           formStatus.focus();
           submitButton.disabled = false;
           submitButton.textContent = 'Send Enquiry';
+        }
+      });
+      contactForm.elements.email.addEventListener('input', () => {
+        const emailField = contactForm.elements.email;
+        if (!emailField.hasAttribute('aria-invalid')) return;
+        const emailError = document.getElementById('email-error');
+        if (emailField.value.trim() && emailField.validity.valid) {
+          emailError.hidden = true;
+          emailField.removeAttribute('aria-invalid');
         }
       });
     </script>

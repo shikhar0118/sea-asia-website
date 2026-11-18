@@ -104,6 +104,13 @@ if ($service !== '' && !in_array($service, $allowedServices, true)) {
     redirectWithStatus('error', $error);
 }
 
+// Reuse one provider key for retries of the same submission to avoid duplicate emails.
+$submissionId = trim((string) ($submittedData['submission_id'] ?? ''));
+if (!preg_match('/^[A-Za-z0-9_-]{16,64}$/', $submissionId)) {
+    $submissionId = bin2hex(random_bytes(16));
+}
+$idempotencyKey = 'sea-asia-contact/' . $submissionId;
+
 // Keep credentials in the hosting environment or in a private config file
 // outside the public document root (for GoDaddy cPanel deployments).
 $hostingConfigPath = dirname(__DIR__, 2) . '/sea-asia-config.php';
@@ -113,11 +120,15 @@ if (!is_array($hostingConfig)) {
 }
 
 $apiKey = getenv('RESEND_API_KEY') ?: (string) ($hostingConfig['RESEND_API_KEY'] ?? '');
-$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? 'info@seaasiashipping.com');
+$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? '');
 $sender = getenv('CONTACT_FROM_EMAIL') ?: (string) ($hostingConfig['CONTACT_FROM_EMAIL'] ?? '');
+$senderAddress = $sender;
+if (preg_match('/<([^<>]+)>/', $sender, $senderMatch)) {
+    $senderAddress = trim($senderMatch[1]);
+}
 
-if ($apiKey === '' || $sender === '') {
-    error_log('Sea Asia contact form: email delivery is not configured.');
+if ($apiKey === '' || $sender === '' || !filter_var($recipient, FILTER_VALIDATE_EMAIL) || !filter_var($senderAddress, FILTER_VALIDATE_EMAIL)) {
+    error_log('Sea Asia contact form: email delivery configuration is missing or invalid.');
     $error = 'Enquiry sending is not configured yet. Please email info@seaasiashipping.com.';
     if ($isJsonRequest) {
         respondWithJson(503, $error);
@@ -140,25 +151,51 @@ $payload = json_encode([
     'reply_to' => $email,
     'subject' => $subject,
     'text' => $text,
-]);
+], JSON_INVALID_UTF8_SUBSTITUTE);
 
-$context = stream_context_create([
-    'http' => [
-        'method' => 'POST',
-        'header' => "Authorization: Bearer {$apiKey}\r\nContent-Type: application/json\r\nAccept: application/json\r\n",
-        'content' => $payload,
-        'timeout' => 12,
-        'ignore_errors' => true,
-    ],
-]);
+if (!is_string($payload)) {
+    error_log('Sea Asia contact form: email payload encoding failed.');
+    $error = 'We could not prepare your enquiry right now. Please try again or email info@seaasiashipping.com.';
+    if ($isJsonRequest) {
+        respondWithJson(500, $error);
+    }
+    redirectWithStatus('error', $error);
+}
 
-$responseBody = @file_get_contents('https://api.resend.com/emails', false, $context);
-$statusLine = $http_response_header[0] ?? '';
-preg_match('/\s(\d{3})\s/', $statusLine, $statusMatch);
-$httpStatus = isset($statusMatch[1]) ? (int) $statusMatch[1] : 0;
+$responseBody = false;
+$httpStatus = 0;
+$maxAttempts = 2;
+for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+    $context = stream_context_create([
+        'http' => [
+            'method' => 'POST',
+            'header' => "Authorization: Bearer {$apiKey}\r\nContent-Type: application/json\r\nAccept: application/json\r\nIdempotency-Key: {$idempotencyKey}\r\n",
+            'content' => $payload,
+            'timeout' => 10,
+            'ignore_errors' => true,
+        ],
+    ]);
+
+    unset($http_response_header);
+    $responseBody = @file_get_contents('https://api.resend.com/emails', false, $context);
+    $statusLine = $http_response_header[0] ?? '';
+    preg_match('/\s(\d{3})\s/', $statusLine, $statusMatch);
+    $httpStatus = isset($statusMatch[1]) ? (int) $statusMatch[1] : 0;
+
+    if ($responseBody !== false && $httpStatus >= 200 && $httpStatus < 300) {
+        break;
+    }
+
+    $retryableFailure = $responseBody === false || $httpStatus === 429 || $httpStatus >= 500;
+    if (!$retryableFailure || $attempt === $maxAttempts) {
+        break;
+    }
+
+    usleep(350000);
+}
 
 if ($responseBody === false || $httpStatus < 200 || $httpStatus >= 300) {
-    error_log('Sea Asia contact form email delivery failed. HTTP status: ' . $httpStatus . '; response: ' . (string) $responseBody);
+    error_log('Sea Asia contact form email delivery failed after ' . $attempt . ' attempt(s). HTTP status: ' . $httpStatus . '.');
     $error = 'We could not send your enquiry right now. Please contact us by email or WhatsApp.';
     if ($isJsonRequest) {
         respondWithJson($httpStatus === 0 ? 503 : 500, $error);
@@ -171,4 +208,5 @@ if ($isJsonRequest) {
 }
 
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+$_SESSION['contact_submission_id'] = bin2hex(random_bytes(16));
 redirectWithStatus('success', 'Thank you. Your enquiry has been sent to our team.');

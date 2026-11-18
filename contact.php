@@ -7,6 +7,9 @@ session_start();
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
+if (empty($_SESSION['contact_submission_id'])) {
+    $_SESSION['contact_submission_id'] = bin2hex(random_bytes(16));
+}
 
 $status = $_SESSION['contact_status'] ?? null;
 unset($_SESSION['contact_status']);
@@ -115,6 +118,7 @@ function h(string $value): string
             <?php endif; ?>
             <form class="contact-form" action="php/contact-submit.php" method="post">
               <input type="hidden" name="csrf_token" value="<?= h($_SESSION['csrf_token']) ?>">
+              <input type="hidden" name="submission_id" value="<?= h($_SESSION['contact_submission_id']) ?>">
               <div class="hp-field" aria-hidden="true">
                 <label for="website">
                   Leave this field empty
