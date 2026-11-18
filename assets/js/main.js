@@ -1,4 +1,66 @@
 (() => {
+  // Accessible team-photo slideshow in the Contact page network feature.
+  document.querySelectorAll('[data-team-carousel]').forEach((carousel) => {
+    const slides = [...carousel.querySelectorAll('.team-carousel-slide')];
+    const previousButton = carousel.querySelector('[data-team-previous]');
+    const nextButton = carousel.querySelector('[data-team-next]');
+    const toggleButton = carousel.querySelector('[data-team-toggle]');
+    const counter = carousel.querySelector('[data-team-counter]');
+    if (slides.length < 2 || !previousButton || !nextButton || !toggleButton || !counter) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let currentSlide = 0;
+    let paused = reducedMotion;
+    let pointerInside = false;
+    let focusInside = false;
+    let timer = null;
+
+    const updateSlide = (index) => {
+      currentSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === currentSlide;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+      counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+    };
+
+    const stopTimer = () => {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = null;
+    };
+    const startTimer = () => {
+      stopTimer();
+      if (paused || pointerInside || focusInside) return;
+      timer = window.setInterval(() => updateSlide(currentSlide + 1), 5500);
+    };
+
+    toggleButton.setAttribute('aria-pressed', String(paused));
+    toggleButton.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+    toggleButton.textContent = paused ? 'Play' : 'Pause';
+    previousButton.addEventListener('click', () => { updateSlide(currentSlide - 1); startTimer(); });
+    nextButton.addEventListener('click', () => { updateSlide(currentSlide + 1); startTimer(); });
+    toggleButton.addEventListener('click', () => {
+      paused = !paused;
+      toggleButton.setAttribute('aria-pressed', String(paused));
+      toggleButton.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+      toggleButton.textContent = paused ? 'Play' : 'Pause';
+      startTimer();
+    });
+    carousel.addEventListener('pointerenter', () => { pointerInside = true; stopTimer(); });
+    carousel.addEventListener('pointerleave', () => { pointerInside = false; startTimer(); });
+    carousel.addEventListener('focusin', () => { focusInside = true; stopTimer(); });
+    carousel.addEventListener('focusout', (event) => {
+      if (!carousel.contains(event.relatedTarget)) {
+        focusInside = false;
+        startTimer();
+      }
+    });
+    updateSlide(0);
+    startTimer();
+  });
+
   // Mobile navigation menu
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.primary-nav');
