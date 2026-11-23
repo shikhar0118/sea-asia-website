@@ -5660,3 +5660,7 @@ main .detail-label { font-size: 13px; }
   .department-team-card-forwarding .department-roles { grid-template-rows: 1fr; }
 }
 
+.contact-details .contact-info-block a { text-decoration: none; }
+.contact-details .contact-info-block a:hover,
+.contact-details .contact-info-block a:focus-visible { text-decoration: none; }
+

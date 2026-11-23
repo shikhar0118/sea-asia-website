@@ -23,7 +23,7 @@ function h(string $value): string
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="assets/images/favicon.png?v=4">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="assets/images/favicon.png?v=5">
     <meta name="description" content="Contact Sea Asia Shipping Services LLP in Bhopal, Madhya Pradesh, for logistics and shipping enquiries.">
     <title>Contact | Sea Asia Shipping Services LLP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@ function h(string $value): string
       Skip to content
     </a>
     <header class="site-header">
-    <div class="header-contact-bar"><div class="container header-contact-inner"><span class="header-contact-location"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.1 6-10a6 6 0 1 0-12 0c0 4.9 6 10 6 10Z"/><circle cx="10" cy="8" r="2"/></svg><span>Shipping and logistics support <b>·</b> Bhopal, India</span></span><div class="header-contact-links"><a href="tel:+917509066901" aria-label="Call Sea Asia at +91 7509066901"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 3.5h2l1.4 3.4-1.8 1.3a12 12 0 0 0 3.7 3.7l1.3-1.8 3.4 1.4v2c0 .8-.7 1.5-1.5 1.5C9.1 15 5 10.9 5 6.5c0-.8.7-1.5 1.5-1.5Z"/></svg><span>+91 7509066901</span></a><a href="mailto:info@seaasiashipping.com" aria-label="Email Sea Asia at info@seaasiashipping.com"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="1.5"/><path d="m3.5 5 6.5 5 6.5-5"/></svg><span>info@seaasiashipping.com</span></a></div></div></div>
+    <div class="header-contact-bar"><div class="container header-contact-inner"><span class="header-contact-location"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.1 6-10a6 6 0 1 0-12 0c0 4.9 6 10 6 10Z"/><circle cx="10" cy="8" r="2"/></svg><span>Shipping and logistics support Bhopal, India</span></span><div class="header-contact-links"><a href="tel:+917509066901" aria-label="Call Sea Asia at +91 7509066901"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 3.5h2l1.4 3.4-1.8 1.3a12 12 0 0 0 3.7 3.7l1.3-1.8 3.4 1.4v2c0 .8-.7 1.5-1.5 1.5C9.1 15 5 10.9 5 6.5c0-.8.7-1.5 1.5-1.5Z"/></svg><span>+91 7509066901</span></a><a href="mailto:info@seaasiashipping.com" aria-label="Email Sea Asia at info@seaasiashipping.com"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="1.5"/><path d="m3.5 5 6.5 5 6.5-5"/></svg><span>info@seaasiashipping.com</span></a></div></div></div>
       <div class="container header-inner">
         <a class="brand" href="index.html">
           <img class="brand-mark" src="assets/images/logo.png" alt="Sea Asia Shipping Services LLP">
@@ -106,7 +106,7 @@ function h(string $value): string
             <p class="contact-details-lead">Share a few details and our team can understand your requirements and follow up by email.</p>
             <div class="contact-info-block"><span class="contact-info-icon" aria-hidden="true">01</span><div><p class="detail-label">Email our team</p><p><a href="mailto:info@seaasiashipping.com">info@seaasiashipping.com</a></p></div></div>
             <div class="contact-info-block"><span class="contact-info-icon" aria-hidden="true">02</span><div><p class="detail-label">Call our team</p><p><a href="tel:+917509066901">+91 7509066901</a></p></div></div>
-            <div class="contact-info-block"><span class="contact-info-icon" aria-hidden="true">03</span><div><p class="detail-label">Visit our office</p><p>Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh 462047</p></div></div>
+            <div class="contact-info-block"><span class="contact-info-icon" aria-hidden="true">03</span><div><p class="detail-label">Head Office</p><p>Paras Business Park, Plot number 14, Narmadapuram Rd, near Ashima Mall, opposite to Maple High Street, Chinar Fortune City, Bhopal, Madhya Pradesh 462047</p></div></div>
             <div class="contact-support-note"><span aria-hidden="true">↗</span><p><strong>Helpful details to include</strong><br>Cargo type, origin and destination, expected timing, and the support you need.</p></div>
           </aside>
           <div class="contact-form-column">

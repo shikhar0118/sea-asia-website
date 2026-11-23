@@ -15,7 +15,7 @@ This site uses static HTML, CSS, JavaScript, and a PHP contact-form endpoint. Us
    <?php
    return [
        'RESEND_API_KEY' => 'your_private_resend_api_key',
-       'CONTACT_TO_EMAIL' => 'your_inbox@your_domain.com',
+       'CONTACT_TO_EMAIL' => 'info@seaasiashipping.com',
        'CONTACT_FROM_EMAIL' => 'Sea Asia Website <website@your_verified_sending_subdomain.example>',
    ];
    ```
@@ -23,7 +23,7 @@ This site uses static HTML, CSS, JavaScript, and a PHP contact-form endpoint. Us
 5. In Resend, verify the sending domain used by `CONTACT_FROM_EMAIL`. Add the DNS records Resend provides in GoDaddy DNS. Keep existing MX records if you use GoDaddy for email.
 6. Visit the domain over HTTPS and submit a contact-form enquiry to confirm delivery.
 
-The PHP handler reads credentials from hosting environment variables first, then from the private `sea-asia-config.php` file. The recipient and sender can be changed there without editing website code.
+The PHP handler reads credentials from hosting environment variables first, then from the private `sea-asia-config.php` file. Enquiries go to `info@seaasiashipping.com` by default; set `CONTACT_TO_EMAIL` in the hosting environment or private config to use another inbox. The sender must be verified with Resend.
 
 Keep `RESEND_API_KEY` only in a hosting environment variable or the private config file above the web root. Never place it in HTML, JavaScript, or a public repository. The `.htaccess` rules deny web requests for environment files, deployment notes, database files, and private configuration filenames as an extra safeguard.
 

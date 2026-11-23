@@ -120,7 +120,7 @@ if (!is_array($hostingConfig)) {
 }
 
 $apiKey = getenv('RESEND_API_KEY') ?: (string) ($hostingConfig['RESEND_API_KEY'] ?? '');
-$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? '');
+$recipient = getenv('CONTACT_TO_EMAIL') ?: (string) ($hostingConfig['CONTACT_TO_EMAIL'] ?? 'info@seaasiashipping.com');
 $sender = getenv('CONTACT_FROM_EMAIL') ?: (string) ($hostingConfig['CONTACT_FROM_EMAIL'] ?? '');
 $senderAddress = $sender;
 if (preg_match('/<([^<>]+)>/', $sender, $senderMatch)) {
