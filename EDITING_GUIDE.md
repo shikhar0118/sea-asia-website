@@ -9,7 +9,7 @@ You do not need to know HTML class names or IDs to request an edit. Describe wha
 | Homepage wording and sections | `index.html` |
 | Other page wording | Files in `pages/` |
 | Contact page layout and enquiry form | `contact.html` |
-| Enquiry validation and database saving | `php/contact-submit.php` |
+| Enquiry validation and email delivery | `php/contact-submit.php` |
 | Colors, fonts, spacing, layout, and mobile appearance | `assets/css/style.css` |
 | Slideshow timing and which text goes with each image | `assets/js/main.js` |
 | Website photos and logos | `assets/images/` |
