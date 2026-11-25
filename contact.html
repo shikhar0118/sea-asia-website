@@ -200,7 +200,7 @@
         formStatus.hidden = true;
 
         try {
-          const response = await fetch('/api/contact-submit.php', {
+          const response = await fetch(new URL('api/contact-submit.php', document.baseURI), {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -210,7 +210,7 @@
           });
           const result = await response.json().catch(() => null);
           if (!result) {
-            throw new Error('The enquiry service is not available here. Please email info@seaasiashipping.com.');
+            throw new Error('We could not connect to the enquiry service. Please email info@seaasiashipping.com.');
           }
           if (!response.ok || !result.ok) {
             throw new Error(result.message || 'We could not send your enquiry. Please try again.');
